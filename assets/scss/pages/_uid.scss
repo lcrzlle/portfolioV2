@@ -1,0 +1,202 @@
+@use "../utils/variables" as *;
+@use "../utils/placeholder" as *;
+
+#projectContent {
+
+    #projectContent #pageFooter #wrapperFooter .footer__thumb__wrapper {
+        overflow: scroll!important;
+        touch-action: pan-x !important;
+    }
+
+    #wrapperFooter > div {
+        overflow: scroll!important;
+        touch-action: pan-x !important;
+    }
+
+    #viewItem {
+        position: fixed;
+        top: calc(50% - calc($space-s * 2));
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .item__project__v {
+            @extend %fixed-center;
+            @extend %flex-center;
+            aspect-ratio: 667/1000;
+
+            img {
+                aspect-ratio: 667/1000;
+                opacity: 0;
+
+                @media screen and (max-height: 779px) {
+
+                    @media screen and (max-width: 500px) {
+                        width: calc(60vw);
+                    }
+
+                    @media screen and (min-width: 701px) {
+                        width: 350px;
+                    }
+
+                }
+
+                @media screen and (min-height: 780px) {
+
+                    @media screen and (max-width: 500px) {
+                        width: calc(70vw);
+                    }
+
+                    @media screen and (min-width: 701px) {
+                        width: 400px;
+                    }
+                }
+
+                @media screen and (min-height: 920px) {
+
+                    @media screen and (min-width: 1720px) {
+                        width: 400px;
+                    }
+                }
+
+                object-fit: contain;
+            }
+        }
+
+        .item__project__h {
+            @extend %fixed-center;
+            @extend %flex-center;
+            aspect-ratio: 3/2;
+
+            img {
+                aspect-ratio: 3/2;
+                opacity: 0;
+
+                @media screen and (max-width: 500px) {
+                    width: calc(100vw - 2 * $space-s);
+                }
+
+                @media screen and (min-width: 501px) {
+                    width: 80vw;
+                }
+
+                @media screen and (min-width: 701px) {
+                    width: 650px;
+                }
+
+                @media screen and (min-height: 920px) {
+
+                    @media screen and (min-width: 1720px) {
+                        width: 750px;
+                    }
+                }
+                object-fit: contain;
+            }
+        }
+    }
+
+    .reveal-project {
+        overflow: hidden;
+        line-height: 110%;
+    }
+
+    #pageFooter {
+        touch-action: pan-x !important;
+        overflow-x: scroll !important;
+        position: fixed;
+        z-index: 99;
+        bottom: $space-s;
+        width: 100%;
+        display: flex;
+
+        #wrapperFooter {
+            width: 100%;
+
+            .footer__thumb__wrapper {
+                width: 100%;
+            }
+
+            .footer__thumb__inner__project {
+                width: 100%;
+                overflow-x: scroll !important;
+                overflow-y: hidden !important;
+                touch-action: pan-x !important;
+                padding-right: $space-s;
+            }
+        }
+    }
+
+    #viewItemInfos {
+        position: fixed;
+        z-index: 80;
+        padding-left: $space-s;
+        display: flex;
+        justify-content: flex-end;
+        width: calc(100vw - 2 * $space-s);
+
+        @media (max-width: 500px) {
+            bottom: calc($space-s * 3.5);
+        }
+
+        @media (min-width: 501px) {
+            bottom: calc($space-s * 4);
+        }
+    }
+
+    .item__back__wrapper {
+        position: fixed;
+        padding-left: 1px;
+        z-index: 98;
+        top: calc($space-s * 1.2);
+        left: $space-s;
+        font-size: $font-size-link;
+        font-weight: 350;
+        display: flex;
+        flex-direction: row-reverse;
+        overflow: hidden;
+
+        svg {
+            width: calc($space-s / 1.4);
+            height: calc($space-s / 1.4);
+        }
+
+        .item__back__icon {
+            margin-right: 0.4rem;
+            transform: rotate(-90deg) translateX(-140%);
+        }
+
+    }
+
+    #wrapperFooter {
+        height: 200px;
+    }
+
+    .item__back {
+        font-size: $font-size-link;
+        font-weight: 350;
+        display: flex;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .item__title {
+        .page__title__secondary {
+            font-size: $font-size-link;
+            font-weight: 350;
+            color: $aluminium;
+            margin-bottom: 2rem;
+
+            span {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+        .page__title__primary {
+            @extend %flex-column;
+            font-size: calc($font-size-link * 1.2);
+            line-height: 90%;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+    types: [wordpress]
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate and deploy
+        run: |
+          npx nuxi generate
+          git config user.name "lcrzlle"
+          git config user.email "lcrzlle@users.noreply.github.com"
+          find . -maxdepth 1 ! -name '.output' ! -name '.git' -exec rm -r {} \;
+          cp -r .output/public/. .
+          rm -rf .output
+          git add .
+          git commit --allow-empty -m "Static files updated"
+          git push -f origin main:prod

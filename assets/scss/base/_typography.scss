@@ -1,0 +1,51 @@
+.reveal,
+.reveal-preview,
+.reveal-text-preview,
+.reveal-text
+.reveal-project
+.reveal-text-project
+.reveal-text-menu
+.reveal-menu,
+.reveal-header,
+.reveal-nav-project,
+.reveal-loading {
+  visibility: hidden;
+}
+
+.letter {
+  position: relative;
+  display: inline-block;
+  will-change: transform;
+  transform-style: preserve-3d;
+
+  div {
+    width: 100%;
+    backface-visibility: hidden;
+    transform: translateZ(10px);
+    transform-style: preserve-3d;
+  }
+}
+
+.perspective {
+  perspective: 300px;
+  position: relative;
+  display: inline-block;
+  &:last-child {
+    margin-right: 0;
+  }
+
+  div {
+    position: relative;
+    display: inline-block;
+  }
+}
+
+.word {
+  display: inline-block;
+}
+
+.line {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
