@@ -43,10 +43,11 @@ export function updateNavigationHeader(route) {
 
 export function resetNavHeader() {
     let navHeader = document.getElementById('navHeader');
+    if (!navHeader) return;
     let navLinks = navHeader.querySelectorAll('.button-link');
 
     navLinks.forEach((link) => {
-        if (link.parentElement.classList.contains('router-link-active')) {
+        if (link.parentElement && link.parentElement.classList.contains('router-link-active')) {
             setTimeout(() => {
                 link.classList.add('is-active');
             }, 1000);
@@ -54,23 +55,23 @@ export function resetNavHeader() {
             link.classList.remove('is-active');
         }
     });
-
 }
 
 export function handleButtonState(route) {
-    let buttonLink;
+    const activeLink = document.querySelector('.router-link-active');
+    if (!activeLink) return;
 
-    if (document.querySelector('.router-link-active')) {
-        buttonLink = document.querySelector('.router-link-active')
-            .querySelector('.button-link');
-        if (buttonLink) {
+    const buttonLink = activeLink.querySelector('.button-link');
+    if (buttonLink) {
+        setTimeout(() => {
+            buttonLink.classList.add('is-active');
+        }, 1000);
+    } else {
+        const navLinks = document.querySelectorAll('.nav-link');
+        if (navLinks[1]) {
+            const target = navLinks[1].querySelector('.button-link');
             setTimeout(() => {
-                buttonLink.classList.add('is-active');
-            }, 1000);
-        } else if (route.name !== 'index' || route.name !== 'about' || route.name !== 'credits') {
-            buttonLink = document.querySelectorAll('.nav-link');
-            setTimeout(() => {
-                buttonLink[1].querySelector('.button-link').classList.add('is-active');
+                if (target) target.classList.add('is-active');
             }, 1000);
         }
     }

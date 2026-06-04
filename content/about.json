@@ -1,0 +1,23 @@
+{
+  "acf": {
+    "page_title": "Léo Crouzille",
+    "page_subtitle_1": "À Propos",
+    "page_subtitle_2": "Photographe",
+    "page_subtitle_3": "Portfolio",
+    "page_headline": {
+      "line_1": "Ligne 1",
+      "line_2": "Ligne 2",
+      "line_3": "Ligne 3"
+    },
+    "page_paragraph_1": "Paragraphe de présentation 1.",
+    "page_paragraph_2": "Paragraphe de présentation 2.",
+    "about_slider": [
+      {
+        "image": {
+          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/about-1.jpg",
+          "alt": "Photo about"
+        }
+      }
+    ]
+  }
+}

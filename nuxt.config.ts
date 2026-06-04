@@ -71,6 +71,6 @@ export default defineNuxtConfig({
 		transpile: ['three', 'gsap'],
 	},
   image: {
-    domains: ['cdn.sanity.io']
+    domains: ['res.cloudinary.com']
   }
 })

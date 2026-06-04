@@ -1,0 +1,29 @@
+{
+  "acf": {
+    "page_title": "Léo Crouzille",
+    "page_subtitle_1": "Photographe",
+    "page_subtitle_2": "Indépendant",
+    "page_subtitle_3": "Portfolio",
+    "page_paragraph": "Photographe indépendant spécialisé dans les domaines du BTP et de l'architecture.",
+    "home_slider": [
+      {
+        "image": {
+          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/home-1.jpg",
+          "alt": "Photo 1"
+        }
+      },
+      {
+        "image": {
+          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/home-2.jpg",
+          "alt": "Photo 2"
+        }
+      },
+      {
+        "image": {
+          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/home-3.jpg",
+          "alt": "Photo 3"
+        }
+      }
+    ]
+  }
+}

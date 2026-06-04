@@ -1,0 +1,33 @@
+{
+  "acf": {
+    "page_title": "Léo Crouzille",
+    "page_subtitle_1": "Crédits",
+    "page_subtitle_2": "Mentions",
+    "page_subtitle_3": "Portfolio",
+    "page_credit_1": {
+      "title": "Développement",
+      "text": "Nom du développeur",
+      "url": "https://example.com"
+    },
+    "page_credit_2": {
+      "title": "Design",
+      "text": "Nom du designer",
+      "url": "https://example.com"
+    },
+    "page_credit_3": {
+      "title": "Typographie",
+      "text_1": "Switzer Variable",
+      "url_1": "https://www.fontshare.com/fonts/switzer",
+      "text_2": "Fontshare",
+      "url_2": "https://www.fontshare.com"
+    },
+    "credits_slider": {
+      "credits_slider_1": {
+        "image": {
+          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/credits-1.jpg",
+          "alt": "Photo credits"
+        }
+      }
+    }
+  }
+}

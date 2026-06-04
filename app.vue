@@ -38,7 +38,13 @@
 
 <script setup>
 import gsap from 'gsap';
-import sanity from '~/composables/sanityClient.js';
+import projectsData from '~/content/projects.json';
+import projetsPersData from '~/content/projets-perso.json';
+import settingsData from '~/content/settings.json';
+import homeData from '~/content/home.json';
+import aboutData from '~/content/about.json';
+import creditsData from '~/content/credits.json';
+import mentionsData from '~/content/mentions.json';
 
 const route = useRoute();
 const useSettingsData = useState('settings');
@@ -57,152 +63,14 @@ const loading = ref(true);
 const progress = ref(0);
 const loadingScreen = ref(null);
 
-// Transforme une image Sanity en { url, alt }
-function img(sanityImg) {
-    if (!sanityImg) return { url: '', alt: '' };
-    return { url: sanityImg.asset?.url ?? '', alt: sanityImg.alt ?? '' };
-}
-
-// Transforme un slide Sanity en { image: { url, alt }, format }
-function slide(s) {
-    return { image: img(s.image), format: s.format ?? 'horizontal' };
-}
-
-// Transforme un projet Sanity au format attendu par les composants
-function normalizeProject(p) {
-    return {
-        slug: p.slug?.current ?? p.slug ?? '',
-        acf: {
-            title: p.title ?? '',
-            localisation: p.localisation ?? '',
-            project_number: p.project_number ?? '',
-            category: p.category ?? '',
-            title_preview: p.title_preview ?? { line_1: p.title ?? '', line_2: '' },
-            primary: img(p.primary),
-            slides: (p.slides ?? []).map(slide),
-            video_url: p.video_url ?? null,
-        },
-    };
-}
-
-await callOnce(async () => {
-    const [
-        rawProjects,
-        rawProjetsPers,
-        rawSettings,
-        rawHome,
-        rawAbout,
-        rawCredits,
-        rawMentions,
-    ] = await Promise.all([
-        sanity.fetch(`*[_type == "project"] | order(order asc) {
-            title, slug, localisation, project_number, category,
-            title_preview { line_1, line_2 },
-            "primary": primary { "asset": asset->{ url }, alt },
-            "slides": slides[] { "image": image { "asset": asset->{ url }, alt }, format },
-            video_url
-        }`),
-        sanity.fetch(`*[_type == "projetPerso"] | order(order asc) {
-            title, slug, localisation, project_number, category,
-            title_preview { line_1, line_2 },
-            "primary": primary { "asset": asset->{ url }, alt },
-            "slides": slides[] { "image": image { "asset": asset->{ url }, alt }, format }
-        }`).catch(() => []),
-        sanity.fetch(`*[_type == "settings"][0] {
-            email, instagram_link, linkedin_link, youtube_link,
-            "contact_slider_image": contact_slider_image { "asset": asset->{ url }, alt }
-        }`).catch(() => ({})),
-        sanity.fetch(`*[_type == "homePage"][0] {
-            page_title, page_subtitle_1, page_subtitle_2, page_subtitle_3, page_paragraph,
-            "home_slider": home_slider[] { "image": image { "asset": asset->{ url }, alt } }
-        }`).catch(() => ({})),
-        sanity.fetch(`*[_type == "aboutPage"][0] {
-            page_title, page_subtitle_1, page_subtitle_2, page_subtitle_3,
-            page_headline { line_1, line_2, line_3 },
-            page_paragraph_1, page_paragraph_2,
-            "about_slider": about_slider[] { "image": image { "asset": asset->{ url }, alt } }
-        }`).catch(() => ({})),
-        sanity.fetch(`*[_type == "creditsPage"][0] {
-            page_title, page_subtitle_1, page_subtitle_2, page_subtitle_3,
-            page_credit_1 { title, text, url },
-            page_credit_2 { title, text, url },
-            page_credit_3 { title, text_1, url_1, text_2, url_2 },
-            "credits_slider": credits_slider[] { "image": image { "asset": asset->{ url }, alt } }
-        }`).catch(() => ({})),
-        sanity.fetch(`*[_type == "mentionsPage"][0] {
-            page_title, page_subtitle_1, page_subtitle_2, page_subtitle_3,
-            page_mention_1 { title, text_line_1, text_line_2, text_line_3, text_line_4, text_line_5 },
-            page_mention_2 { title, text_line_1, text_line_2, text_line_3, text_line_4, text_line_5 },
-            "mentions_slider": mentions_slider[] { "image": image { "asset": asset->{ url }, alt } }
-        }`).catch(() => ({})),
-    ]);
-
-    useProjectsData.value = (rawProjects ?? []).map(normalizeProject);
-    useProjetsPersData.value = (rawProjetsPers ?? []).map(normalizeProject);
-
-    // Normalise settings → format attendu par les composants
-    useSettingsData.value = {
-        acf: {
-            email: rawSettings?.email ?? '',
-            instagram_link: rawSettings?.instagram_link ?? '#',
-            linkedin_link: rawSettings?.linkedin_link ?? '#',
-            youtube_link: rawSettings?.youtube_link ?? '#',
-            contact_slider_image: img(rawSettings?.contact_slider_image),
-        },
-    };
-
-    // Normalise home → format attendu
-    useHomeData.value = {
-        acf: {
-            page_title: rawHome?.page_title ?? '',
-            page_subtitle_1: rawHome?.page_subtitle_1 ?? '',
-            page_subtitle_2: rawHome?.page_subtitle_2 ?? '',
-            page_subtitle_3: rawHome?.page_subtitle_3 ?? '',
-            page_paragraph: rawHome?.page_paragraph ?? '',
-            home_slider: (rawHome?.home_slider ?? []).map(s => ({ image: img(s.image) })),
-        },
-    };
-
-    // Normalise about
-    useAboutData.value = {
-        acf: {
-            page_title: rawAbout?.page_title ?? '',
-            page_subtitle_1: rawAbout?.page_subtitle_1 ?? '',
-            page_subtitle_2: rawAbout?.page_subtitle_2 ?? '',
-            page_subtitle_3: rawAbout?.page_subtitle_3 ?? '',
-            page_headline: rawAbout?.page_headline ?? { line_1: '', line_2: '', line_3: '' },
-            page_paragraph_1: rawAbout?.page_paragraph_1 ?? '',
-            page_paragraph_2: rawAbout?.page_paragraph_2 ?? '',
-            about_slider: (rawAbout?.about_slider ?? []).map(s => ({ image: img(s.image) })),
-        },
-    };
-
-    // Normalise credits
-    useCreditsData.value = {
-        acf: {
-            page_title: rawCredits?.page_title ?? '',
-            page_subtitle_1: rawCredits?.page_subtitle_1 ?? '',
-            page_subtitle_2: rawCredits?.page_subtitle_2 ?? '',
-            page_subtitle_3: rawCredits?.page_subtitle_3 ?? '',
-            page_credit_1: rawCredits?.page_credit_1 ?? { title: '', text: '', url: '#' },
-            page_credit_2: rawCredits?.page_credit_2 ?? { title: '', text: '', url: '#' },
-            page_credit_3: rawCredits?.page_credit_3 ?? { title: '', text_1: '', url_1: '#', text_2: '', url_2: '#' },
-            credits_slider: { credits_slider_1: { image: img(rawCredits?.credits_slider?.[0]?.image) } },
-        },
-    };
-
-    // Normalise mentions
-    useMentionsData.value = {
-        acf: {
-            page_title: rawMentions?.page_title ?? '',
-            page_subtitle_1: rawMentions?.page_subtitle_1 ?? '',
-            page_subtitle_2: rawMentions?.page_subtitle_2 ?? '',
-            page_subtitle_3: rawMentions?.page_subtitle_3 ?? '',
-            page_mention_1: rawMentions?.page_mention_1 ?? { title: '', text_line_1: '' },
-            page_mention_2: rawMentions?.page_mention_2 ?? { title: '', text_line_1: '' },
-            mentions_slider: { mentions_slider_1: { image: img(rawMentions?.mentions_slider?.[0]?.image) } },
-        },
-    };
+callOnce(() => {
+    useProjectsData.value = projectsData;
+    useProjetsPersData.value = projetsPersData;
+    useSettingsData.value = settingsData;
+    useHomeData.value = homeData;
+    useAboutData.value = aboutData;
+    useCreditsData.value = creditsData;
+    useMentionsData.value = mentionsData;
 })
 
 function firstUIReveal() {
