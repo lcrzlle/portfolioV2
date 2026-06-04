@@ -57,19 +57,14 @@ export function resetNavHeader() {
 export function handleButtonState(route) {
     const activeLink = document.querySelector('.router-link-active');
     if (!activeLink) return;
-
     const buttonLink = activeLink.querySelector('.button-link');
     if (buttonLink) {
-        setTimeout(() => {
-            buttonLink.classList.add('is-active');
-        }, 1000);
+        setTimeout(() => { buttonLink.classList.add('is-active'); }, 1000);
     } else {
         const navLinks = document.querySelectorAll('.nav-link');
         if (navLinks[1]) {
             const target = navLinks[1].querySelector('.button-link');
-            setTimeout(() => {
-                if (target) target.classList.add('is-active');
-            }, 1000);
+            setTimeout(() => { if (target) target.classList.add('is-active'); }, 1000);
         }
     }
 }
