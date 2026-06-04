@@ -45,12 +45,9 @@ export function resetNavHeader() {
     let navHeader = document.getElementById('navHeader');
     if (!navHeader) return;
     let navLinks = navHeader.querySelectorAll('.button-link');
-
     navLinks.forEach((link) => {
         if (link.parentElement && link.parentElement.classList.contains('router-link-active')) {
-            setTimeout(() => {
-                link.classList.add('is-active');
-            }, 1000);
+            setTimeout(() => { link.classList.add('is-active'); }, 1000);
         } else {
             link.classList.remove('is-active');
         }
