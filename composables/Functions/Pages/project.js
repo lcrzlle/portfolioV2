@@ -31,15 +31,10 @@ export function initProjectPage(useGL, pagePreviewRef, route, isOnPreview, categ
 export function headerProjectActive() {
     const links = document.querySelectorAll('.button-link');
     if (!links[0] || !links[1]) return;
-    if ((links[0].classList.contains('is-active'))
-        || (links[2] && links[2].classList.contains('is-active'))) {
-        links.forEach((link) => {
-            link.classList.remove('is-active');
-        });
+    if ((links[0].classList.contains('is-active')) || (links[2] && links[2].classList.contains('is-active'))) {
+        links.forEach((link) => { link.classList.remove('is-active'); });
     }
-    setTimeout(() => {
-        if (links[1]) links[1].classList.add('is-active');
-    }, 1000);
+    setTimeout(() => { if (links[1]) links[1].classList.add('is-active'); }, 1000);
 }
 
 export function addClickEvents(useGL, domElement, pagePreviewRef, route, previewDOM) {
