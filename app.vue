@@ -99,6 +99,21 @@ function firstUIReveal() {
     }
 }
 
+function dismissLoadingScreen() {
+    if (!loading.value) return;
+    try { firstUIReveal(); } catch(e) { console.error('firstUIReveal:', e); }
+    if (loadingScreen.value) {
+        gsap.to(loadingScreen.value, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'expo.inOut',
+            onComplete: () => { loading.value = false; }
+        });
+    } else {
+        loading.value = false;
+    }
+}
+
 onMounted(async () => {
     try {
         useGL.value = new GL(canvas.value,
@@ -108,24 +123,16 @@ onMounted(async () => {
     }
     catch (error) { console.error(error); }
     await nextTick();
-    splitReveal('.reveal-loading', false);
+    try { splitReveal('.reveal-loading', false); } catch(e) {}
     setTimeout(() => {
         initLoadingScreen(document.querySelector('.loading__count'), 0, 100, 2500, () => {
             try { splitReveal('.reveal-loading', true); } catch(e) {}
-            try { firstUIReveal(); } catch(e) { console.error('firstUIReveal:', e); }
-            if (loadingScreen.value) {
-                gsap.to(loadingScreen.value, {
-                    opacity: 0,
-                    duration: 0.5,
-                    delay: 0.3,
-                    ease: 'expo.inOut',
-                    onComplete: () => { loading.value = false; }
-                });
-            } else {
-                loading.value = false;
-            }
+            dismissLoadingScreen();
         });
     }, 700);
+
+    // Filet de sécurité — ferme l'écran de chargement après 6s quoi qu'il arrive
+    setTimeout(dismissLoadingScreen, 6000);
 });
 </script>
 
