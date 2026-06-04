@@ -111,17 +111,19 @@ onMounted(async () => {
     splitReveal('.reveal-loading', false);
     setTimeout(() => {
         initLoadingScreen(document.querySelector('.loading__count'), 0, 100, 2500, () => {
-            splitReveal('.reveal-loading', true);
-            firstUIReveal();
-            gsap.to(loadingScreen.value, {
-                opacity: 0,
-                duration: 0.5,
-                delay: 0.3,
-                ease: 'expo.inOut',
-                onComplete: () => {
-                    loading.value = false;
-                }
-            });
+            try { splitReveal('.reveal-loading', true); } catch(e) {}
+            try { firstUIReveal(); } catch(e) { console.error('firstUIReveal:', e); }
+            if (loadingScreen.value) {
+                gsap.to(loadingScreen.value, {
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: 0.3,
+                    ease: 'expo.inOut',
+                    onComplete: () => { loading.value = false; }
+                });
+            } else {
+                loading.value = false;
+            }
         });
     }, 700);
 });

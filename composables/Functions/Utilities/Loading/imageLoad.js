@@ -1,11 +1,14 @@
 export function ensureImagesLoaded(selector) {
     const images = document.querySelectorAll(selector);
+    if (!images.length) return Promise.resolve();
     const loadPromises = [...images].map(img => {
         return new Promise(resolve => {
-            if (img.complete && img.naturalHeight !== 0) {
+            if (img.complete) {
                 resolve();
             } else {
                 img.addEventListener('load', resolve, { once: true });
+                img.addEventListener('error', resolve, { once: true });
+                setTimeout(resolve, 4000);
             }
         });
     });
