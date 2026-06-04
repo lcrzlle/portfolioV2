@@ -1,6 +1,7 @@
 import glsl from 'vite-plugin-glsl'
 
 export default defineNuxtConfig({
+  ssr: false,
   devtools: { enabled: false },
   modules: ['@nuxt/image'],
   css: ['~/assets/scss/main.scss'],
