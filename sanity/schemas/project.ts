@@ -8,7 +8,6 @@ export default defineType({
         defineField({ name: 'title', title: 'Titre', type: 'string' }),
         defineField({ name: 'slug', title: 'Slug (URL)', type: 'slug', options: { source: 'title' } }),
         defineField({ name: 'project_number', title: 'Numéro de projet', type: 'string' }),
-        defineField({ name: 'category', title: 'Catégorie', type: 'string' }),
         defineField({ name: 'localisation', title: 'Localisation', type: 'string' }),
         defineField({
             name: 'title_preview',

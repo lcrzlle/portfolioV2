@@ -94,6 +94,62 @@
         }
     }
 
+    #viewItemMosaic {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: calc($space-s * 4) $space-s;
+        background-color: $anthracite;
+        transform: translateX(-100%);
+        transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform;
+        overflow-y: auto;
+
+        &.is-open {
+            transform: translateX(0);
+        }
+
+        .mosaic__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: $space-s;
+            width: min(1200px, 90vw);
+
+            @media (max-width: 500px) {
+                grid-template-columns: repeat(2, 1fr);
+                gap: calc($space-s / 2);
+            }
+        }
+
+        .mosaic__cell {
+            display: block;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+
+            .mosaic__img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+                opacity: 0.82;
+            }
+
+            &:hover .mosaic__img {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+    }
+
     .reveal-project {
         overflow: hidden;
         line-height: 110%;

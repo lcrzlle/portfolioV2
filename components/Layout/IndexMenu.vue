@@ -21,7 +21,8 @@
                         </div>
                         <div>
                             <p class="index__card__title reveal-text-menu">{{ item.acf.title }}</p>
-                            <p class="index__card__subtitle reveal-text-menu">{{ item.acf.category }}</p>
+                            <p v-if="item.acf.type" class="index__card__type reveal-text-menu">{{ item.acf.type }}</p>
+                            <p class="index__card__subtitle reveal-text-menu">{{ item.acf.localisation }}</p>
                         </div>
                     </div>
                 </NuxtLink>
@@ -165,6 +166,12 @@ br {
             font-size: calc($font-size-link * 1);
             font-weight: 350;
             margin-bottom: calc($space-s / 2);
+        }
+
+        .index__card__type {
+            color: #AAA9A9;
+            font-size: calc($font-size-link * 0.8);
+            margin-bottom: calc($space-s / 3);
         }
 
         .index__card__number {

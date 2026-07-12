@@ -52,9 +52,12 @@ export default class Slider {
 
     setPosition(scroll) {
         if (!this.store) { return; }
-        if (this.defaultState) {
-            this.store.forEach((object, index) => {
-                object.mesh.position.x = -scroll + object.left - this.sizes.width / 2 + object.width / 2;
+        this.store.forEach((object) => {
+            object.mesh.position.x = -scroll + object.left - this.sizes.width / 2 + object.width / 2;
+        });
+        if (this.defaultState && !this.uniformsReset) {
+            this.uniformsReset = true;
+            this.store.forEach((object) => {
                 gsap.to(object.mesh.material.uniforms.uSliderProgress, {
                     value: 0,
                     duration: 1.5,
@@ -65,17 +68,21 @@ export default class Slider {
                     duration: 1.4,
                     ease: 'expo.out',
                 })
-                let itemIndex = index + 4;
-                this.parallaxEffect = gsap.to(object.mesh.material.uniforms.uScrollProgress, {
-                    value: (0.0 + (this.lenis.targetScroll / (200 * itemIndex))) * this.lenis.direction,
-                    duration: 2,
-                    ease: 'ease.inOut',
-                });
+                gsap.set(object.mesh.material.uniforms.uScrollProgress, { value: 0 });
             });
-        } else {
-            this.store.forEach((object) => {
-                object.mesh.position.x = -scroll + object.left - this.sizes.width / 2 + object.width / 2;
-            });
+        } else if (!this.defaultState) {
+            this.uniformsReset = false;
+        }
+    }
+
+    syncLabels() {
+        if (!this.store) { return; }
+        for (let i = 0; i < this.store.length; i++) {
+            const object = this.store[i];
+            if (!object.label) { continue; }
+            const x = this.sizes.width / 2 + object.mesh.position.x;
+            const y = this.sizes.height / 2 - object.mesh.position.y;
+            object.label.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
         }
     }
 

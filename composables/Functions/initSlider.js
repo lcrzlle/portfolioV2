@@ -11,6 +11,11 @@ export function initSlider(lenisInstance, useGL) {
     useGL.ASlider.createProjectSlider(domElements);
     useGL.ASlider.lenis = lenisInstance;
 
+    const labelElements = [...document.querySelectorAll('.slider__item__label')];
+    useGL.ASlider.store.forEach((object, index) => {
+        object.label = labelElements[index] ?? null;
+    });
+
     updateScrollSlider(cross, items, thumbnails, selector, useGL);
     updateNavigation(thumbnails, items, useGL);
 }

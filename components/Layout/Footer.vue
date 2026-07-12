@@ -143,6 +143,30 @@ onMounted(async () => {
         }
     }
 
+    .footer__thumb__img.footer__thumb__dot {
+        width: auto;
+        aspect-ratio: auto;
+        outline: none;
+        padding: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(110%);
+
+        &::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: rgba(245, 240, 232, 0.4);
+            transition: background-color 0.4s ease-in-out;
+        }
+
+        &.is__selected::before {
+            background-color: rgb(245, 240, 232);
+        }
+    }
+
     li {
         position: relative;
         display: inline-block;

@@ -22,6 +22,15 @@
                 <NuxtImg v-if="item.image" class="item__project__img" :src="item.image.url" :alt="item.image.alt" />
             </div>
         </section>
+        <section id="viewItemMosaic" ref="mosaicRef">
+            <div class="mosaic__grid">
+                <button v-for="(item, index) in itemData.slides" :key="index" class="mosaic__cell"
+                    type="button" @click="onMosaicClick(index)">
+                    <NuxtImg v-if="item.image" class="mosaic__img" :src="item.image.url" :alt="item.image.alt"
+                        width="500" />
+                </button>
+            </div>
+        </section>
         <LayoutFooter>
             <section id="viewItemInfos">
                 <div class="item__title">
@@ -34,17 +43,16 @@
                             itemData.localisation }}</span>
                     </p>
                 </div>
-                <div v-if="itemData.video_url" class="item__toggle__wrapper">
+                <div v-if="itemData.videos && itemData.videos.length" class="item__toggle__wrapper">
                     <NuxtLink :to="'/videos/' + route.params.uid" class="item__toggle__link"
                         :class="{ 'button-link': !isTouchDevice }">
-                        <span class="reveal-text-project" style="visibility: hidden;">Voir les vidéos</span>
+                        <span class="reveal-text-project" style="visibility: hidden;">Vidéo</span>
                     </NuxtLink>
                 </div>
             </section>
             <ul class="footer__thumb__inner__project" ref="thumbWrapper">
                 <li v-for="(item, index) in itemData.slides" :key="index">
-                    <NuxtImg v-if="item.image" class="footer__thumb__img footer__thumb__project" :src="item.image.url"
-                        :alt="item.image.alt" ref="addImageRef" width="80" />
+                    <span class="footer__thumb__img footer__thumb__project footer__thumb__dot" aria-hidden="true"></span>
                 </li>
             </ul>
         </LayoutFooter>
@@ -56,8 +64,13 @@ const route = useRoute();
 const useGL = useState('gl');
 const useProjectsData = useState('projects');
 const thumbWrapper = ref(null);
+const mosaicRef = ref(null);
 const isTouchDevice = ref(false);
 let category = 'photos';
+
+function onMosaicClick(index) {
+    navigateUID(useGL.value, index);
+}
 
 const itemData = ref(getItem());
 
@@ -94,8 +107,11 @@ onMounted(async () => {
 }
 
 .item__toggle__wrapper {
+    position: fixed;
+    right: $space-s;
+    bottom: $space-s;
+    z-index: 100;
     overflow: hidden;
-    margin-top: 0.5rem;
 
     .item__toggle__link {
         font-size: $font-size-link;

@@ -98,6 +98,9 @@ export default class GL {
     }
 
     update() {
+        if (this.ASlider) {
+            this.ASlider.syncLabels();
+        }
         this.renderer.update();
         if (this.debugActive) {
             this.material.uniforms.uSliderProgress.value = this.settings.sliderProgress;

@@ -17,14 +17,9 @@
             </span>
         </nav>
         <section id="viewItemVideo">
-            <div v-if="itemData.video_url" class="item__video__wrapper">
-                <iframe
-                    :src="getEmbedUrl(itemData.video_url)"
-                    class="item__video"
-                    frameborder="0"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen
-                />
+            <div v-if="currentVideo" class="item__video__wrapper" :key="videoIndex">
+                <iframe :src="getEmbedUrl(currentVideo)" class="item__video" frameborder="0" scrolling="no"
+                    allow="autoplay; fullscreen; picture-in-picture" allowfullscreen />
             </div>
         </section>
         <LayoutFooter>
@@ -42,14 +37,14 @@
                 <div class="item__toggle__wrapper">
                     <NuxtLink :to="'/photos/' + route.params.uid" class="item__toggle__link"
                         :class="{ 'button-link': !isTouchDevice }">
-                        <span class="reveal-text-project" style="visibility: hidden;">Voir les photos</span>
+                        <span class="reveal-text-project" style="visibility: hidden;">Photo</span>
                     </NuxtLink>
                 </div>
             </section>
             <ul class="footer__thumb__inner__project" ref="thumbWrapper">
-                <li v-for="(item, index) in itemData.slides" :key="index">
-                    <NuxtImg v-if="item.image" class="footer__thumb__img footer__thumb__project" :src="item.image.url"
-                        :alt="item.image.alt" width="80" />
+                <li v-for="(video, index) in itemData.videos" :key="index">
+                    <span class="footer__thumb__img footer__thumb__project footer__thumb__dot"
+                        :class="{ is__selected: index === videoIndex }" @click="videoIndex = index"></span>
                 </li>
             </ul>
         </LayoutFooter>
@@ -65,6 +60,8 @@ const isTouchDevice = ref(false);
 let category = 'videos';
 
 const itemData = ref(getItem());
+const videoIndex = ref(0);
+const currentVideo = computed(() => itemData.value.videos?.[videoIndex.value] ?? null);
 
 function getItem() {
     const item = useProjectsData.value.find(item => item.slug === route.params.uid);
@@ -73,13 +70,33 @@ function getItem() {
 
 function getEmbedUrl(url) {
     if (!url) return '';
-    // YouTube
     const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
     if (ytMatch) return `https://www.youtube-nocookie.com/embed/${ytMatch[1]}`;
-    // Vimeo
     const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
     if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+    const igMatch = url.match(/instagram\.com\/(reel|p|tv)\/([^/?]+)/);
+    if (igMatch) return `https://www.instagram.com/${igMatch[1]}/${igMatch[2]}/embed`;
     return url;
+}
+
+let navLockVideo = false;
+function goVideo(dir) {
+    const n = itemData.value.videos?.length ?? 0;
+    const target = Math.max(0, Math.min(n - 1, videoIndex.value + dir));
+    if (target !== videoIndex.value) videoIndex.value = target;
+}
+function onWheelVideo(event) {
+    if (useGL.value.indexMenuOpen) return;
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    if (Math.abs(delta) < 4 || navLockVideo) return;
+    navLockVideo = true;
+    goVideo(delta > 0 ? 1 : -1);
+    setTimeout(() => { navLockVideo = false; }, 450);
+}
+function onKeysVideo(event) {
+    if (useGL.value.indexMenuOpen) return;
+    if (event.key === 'ArrowRight') { event.preventDefault(); goVideo(1); }
+    else if (event.key === 'ArrowLeft') { event.preventDefault(); goVideo(-1); }
 }
 
 onBeforeRouteLeave((to, from, next) => {
@@ -91,7 +108,14 @@ onMounted(async () => {
     await nextTick();
     isTouchDevice.value = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     onMountedUID(useGL, isTouchDevice, route);
+    document.addEventListener('wheel', onWheelVideo, { passive: true });
+    document.addEventListener('keydown', onKeysVideo);
     unlockUI();
+})
+
+onUnmounted(() => {
+    document.removeEventListener('wheel', onWheelVideo);
+    document.removeEventListener('keydown', onKeysVideo);
 })
 </script>
 
@@ -112,18 +136,22 @@ onMounted(async () => {
 
 .item__video__wrapper {
     position: relative;
-    width: clamp(300px, 70vw, 1200px);
-    aspect-ratio: 16/9;
+    width: min(400px, 92vw);
+    height: min(86vh, 720px);
 
     .item__video {
         width: 100%;
         height: 100%;
+        border: none;
     }
 }
 
 .item__toggle__wrapper {
+    position: fixed;
+    right: $space-s;
+    bottom: $space-s;
+    z-index: 100;
     overflow: hidden;
-    margin-top: 0.5rem;
 
     .item__toggle__link {
         font-size: $font-size-link;

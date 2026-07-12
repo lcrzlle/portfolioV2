@@ -1,36 +1,970 @@
 [
   {
-    "slug": "nom-du-projet",
+    "slug": "dunod-mallier",
     "acf": {
-      "title": "Nom du projet",
-      "localisation": "Paris",
-      "project_number": "01",
-      "category": "Architecture",
+      "title": "Dunod Mallier",
+      "localisation": "",
+      "project_number": "11",
       "title_preview": {
-        "line_1": "Nom du",
-        "line_2": "Projet"
+        "line_1": "Dunod",
+        "line_2": "Mallier"
       },
       "primary": {
-        "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/photo-principale.jpg",
-        "alt": "Description de la photo"
+        "url": "/projets/dunod-mallier/cover.webp",
+        "alt": "Dunod Mallier — couverture du projet"
       },
       "slides": [
         {
           "image": {
-            "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/photo-1.jpg",
-            "alt": "Description"
+            "url": "/projets/dunod-mallier/slide-5.webp",
+            "alt": "Dunod Mallier — photo 1"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/dunod-mallier/slide-2.webp",
+            "alt": "Dunod Mallier — photo 2"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/dunod-mallier/slide-4.webp",
+            "alt": "Dunod Mallier — photo 3"
           },
           "format": "horizontal"
         },
         {
           "image": {
-            "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/photo-2.jpg",
-            "alt": "Description"
+            "url": "/projets/dunod-mallier/slide-3.webp",
+            "alt": "Dunod Mallier — photo 4"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/dunod-mallier/slide-1.webp",
+            "alt": "Dunod Mallier — photo 5"
+          },
+          "format": "horizontal"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Dunod-Mallier est un atelier de ferronnerie d'art qui conçoit et restaure des ouvrages sur mesure en métal. L'entreprise s'adresse aux architectes, décorateurs et clients privés, avec un fort accent sur le savoir-faire artisanal, la qualité et la personnalisation."
+        },
+        {
+          "title": "Mission",
+          "body": "Mettre en avant le savoir faire des artisans à travers des photos et vidéos pendant la réalisation d'un meuble."
+        }
+      ],
+      "type": "Artisan d'art",
+      "videos": []
+    }
+  },
+  {
+    "slug": "palet-saint-germain",
+    "acf": {
+      "title": "Palet Saint Germain",
+      "localisation": "",
+      "project_number": "12",
+      "title_preview": {
+        "line_1": "Palet",
+        "line_2": "Saint Germain"
+      },
+      "primary": {
+        "url": "/projets/palet-saint-germain/cover.webp",
+        "alt": "Palet Saint Germain — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
+            "alt": "Photo 1 (temporaire)"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
+            "alt": "Photo 2 (temporaire)"
           },
           "format": "vertical"
         }
       ],
-      "video_url": null
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Présentation du projet et de ses enjeux — texte à compléter."
+        }
+      ],
+      "type": "Association sportive",
+      "videos": []
+    }
+  },
+  {
+    "slug": "terracall",
+    "acf": {
+      "title": "Terracall",
+      "localisation": "",
+      "project_number": "10",
+      "title_preview": {
+        "line_1": "Terracall",
+        "line_2": ""
+      },
+      "primary": {
+        "url": "/projets/terracall/cover.webp",
+        "alt": "Terracall — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "/projets/terracall/slide-1.webp",
+            "alt": "Terracall — photo 1"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/terracall/slide-2.webp",
+            "alt": "Terracall — photo 2"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/terracall/slide-3.webp",
+            "alt": "Terracall — photo 3"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Terracall est un opérateur mobile nouvelle génération pour les professionnels. Il propose des forfaits avec un assistant IA intégré qui transcrit, résume et organise les appels, avec un enjeu clair : faire gagner du temps et valoriser le savoir-faire commercial des équipes."
+        }
+      ],
+      "type": "Startup",
+      "videos": [
+        "https://www.instagram.com/reel/DLmgQpDvTTE/",
+        "https://www.instagram.com/reel/DMadI-CpjhO/",
+        "https://www.instagram.com/reel/DOvwuvdE8pN/",
+        "https://www.instagram.com/reel/DQ81rVeDIoP/"
+      ]
+    }
+  },
+  {
+    "slug": "biere-masterclass",
+    "acf": {
+      "title": "Bière Masterclass",
+      "localisation": "",
+      "project_number": "09",
+      "title_preview": {
+        "line_1": "Bière",
+        "line_2": "Masterclass"
+      },
+      "primary": {
+        "url": "/projets/biere-masterclass/cover.webp",
+        "alt": "Bière Masterclass — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "/projets/biere-masterclass/slide-1.webp",
+            "alt": "Bière Masterclass — photo 1"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/biere-masterclass/slide-2.webp",
+            "alt": "Bière Masterclass — photo 2"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/biere-masterclass/slide-3.webp",
+            "alt": "Bière Masterclass — photo 3"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/biere-masterclass/slide-4.webp",
+            "alt": "Bière Masterclass — photo 4"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/biere-masterclass/slide-5.webp",
+            "alt": "Bière Masterclass — photo 5"
+          },
+          "format": "horizontal"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Bière Masterclass est une agence événementielle et d'ateliers autour de la bière artisanale, qui propose des dégustations, des animations et des événements sur mesure pour particuliers et entreprises."
+        }
+      ],
+      "type": "Organisateur d'événements découverte",
+      "videos": [
+        "https://www.instagram.com/reel/DU8LF4uCBJA/",
+        "https://www.instagram.com/reel/DVDr9IZjfM5/",
+        "https://www.instagram.com/reel/DYNFIiZg6bt/"
+      ]
+    }
+  },
+  {
+    "slug": "carte-blanche",
+    "acf": {
+      "title": "Carte Blanche",
+      "localisation": "",
+      "project_number": "08",
+      "title_preview": {
+        "line_1": "Carte",
+        "line_2": "Blanche"
+      },
+      "primary": {
+        "url": "/projets/carte-blanche/cover.webp",
+        "alt": "Carte Blanche — restaurant, cuisine en plein service"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-1.webp",
+            "alt": "Carte Blanche — photo 1"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-2.webp",
+            "alt": "Carte Blanche — photo 2"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-3.webp",
+            "alt": "Carte Blanche — photo 3"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-4.webp",
+            "alt": "Carte Blanche — photo 4"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-5.webp",
+            "alt": "Carte Blanche — photo 5"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-6.webp",
+            "alt": "Carte Blanche — photo 6"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-7.webp",
+            "alt": "Carte Blanche — photo 7"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-8.webp",
+            "alt": "Carte Blanche — photo 8"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-9.webp",
+            "alt": "Carte Blanche — photo 9"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-10.webp",
+            "alt": "Carte Blanche — photo 10"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-11.webp",
+            "alt": "Carte Blanche — photo 11"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-12.webp",
+            "alt": "Carte Blanche — photo 12"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-13.webp",
+            "alt": "Carte Blanche — photo 13"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-14.webp",
+            "alt": "Carte Blanche — photo 14"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-15.webp",
+            "alt": "Carte Blanche — photo 15"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-16.webp",
+            "alt": "Carte Blanche — photo 16"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-17.webp",
+            "alt": "Carte Blanche — photo 17"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-18.webp",
+            "alt": "Carte Blanche — photo 18"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-19.webp",
+            "alt": "Carte Blanche — photo 19"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-20.webp",
+            "alt": "Carte Blanche — photo 20"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-21.webp",
+            "alt": "Carte Blanche — photo 21"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-22.webp",
+            "alt": "Carte Blanche — photo 22"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-23.webp",
+            "alt": "Carte Blanche — photo 23"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-24.webp",
+            "alt": "Carte Blanche — photo 24"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-25.webp",
+            "alt": "Carte Blanche — photo 25"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-26.webp",
+            "alt": "Carte Blanche — photo 26"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-27.webp",
+            "alt": "Carte Blanche — photo 27"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-28.webp",
+            "alt": "Carte Blanche — photo 28"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/carte-blanche/slide-29.webp",
+            "alt": "Carte Blanche — photo 29"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Carte Blanche est un lieu de restauration du 10e arrondissement qui fonctionne comme une résidence de chefs. Il s'adresse aux amateurs de gastronomie curieux de découvrir des propositions renouvelées à chaque changement de chef."
+        }
+      ],
+      "type": "Restaurant",
+      "videos": [
+        "https://www.instagram.com/reel/DO3pSB-DN4i/?hl=fr",
+        "https://www.instagram.com/reel/DO83r01jObE/",
+        "https://www.instagram.com/reel/DPWYqPVDKMz/",
+        "https://www.instagram.com/reel/DPos-AkjDL6/",
+        "https://www.instagram.com/reel/DQMgjo_jEFf/",
+        "https://www.instagram.com/reel/DRPGLfajL2D/",
+        "https://www.instagram.com/reel/DRXOHmbjDrh/",
+        "https://www.instagram.com/reel/DRfEqm1jAVi/",
+        "https://www.instagram.com/reel/DSAtTPXjJFE/",
+        "https://www.instagram.com/reel/DUWFe_TDHuW/"
+      ]
+    }
+  },
+  {
+    "slug": "incubateur-ensam",
+    "acf": {
+      "title": "Incubateur ENSAM",
+      "localisation": "",
+      "project_number": "07",
+      "title_preview": {
+        "line_1": "Incubateur",
+        "line_2": "ENSAM"
+      },
+      "primary": {
+        "url": "/projets/incubateur-ensam/cover.webp",
+        "alt": "Incubateur ENSAM — échange à l'incubateur Arts et Métiers, campus de Paris"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
+            "alt": "Incubateur ENSAM — photo 1 (temporaire)"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
+            "alt": "Incubateur ENSAM — photo 2 (temporaire)"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Présentation du projet et de ses enjeux — texte à compléter."
+        }
+      ],
+      "type": "Incubateur d'école",
+      "videos": []
+    }
+  },
+  {
+    "slug": "vestaclim",
+    "acf": {
+      "title": "Vestaclim",
+      "localisation": "",
+      "project_number": "06",
+      "title_preview": {
+        "line_1": "Vestaclim",
+        "line_2": ""
+      },
+      "primary": {
+        "url": "/projets/vestaclim/cover.webp",
+        "alt": "Vestaclim — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-1.webp",
+            "alt": "Vestaclim — photo 1"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-2.webp",
+            "alt": "Vestaclim — photo 2"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-3.webp",
+            "alt": "Vestaclim — photo 3"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-4.webp",
+            "alt": "Vestaclim — photo 4"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-5.webp",
+            "alt": "Vestaclim — photo 5"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-6.webp",
+            "alt": "Vestaclim — photo 6"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-7.webp",
+            "alt": "Vestaclim — photo 7"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-8.webp",
+            "alt": "Vestaclim — photo 8"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-9.webp",
+            "alt": "Vestaclim — photo 9"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-10.webp",
+            "alt": "Vestaclim — photo 10"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-11.webp",
+            "alt": "Vestaclim — photo 11"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-12.webp",
+            "alt": "Vestaclim — photo 12"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/vestaclim/slide-13.webp",
+            "alt": "Vestaclim — photo 13"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Vestaclim est une startup qui développe une solution écologique pour rafraîchir et purifier l'air dans les logements anciens, en particulier ceux où la climatisation classique est difficile à installer. Elle s'adresse aux habitants de logement anciens en ville, de copropriétés et professionnels sensibles au confort thermique.\n\nL'enjeu de Vestaclim est de faire connaitre sa solution au plus grand nombre."
+        }
+      ],
+      "type": "Startup greentech",
+      "videos": []
+    }
+  },
+  {
+    "slug": "corail-et-nacre",
+    "acf": {
+      "title": "Corail & Nacre",
+      "localisation": "",
+      "project_number": "05",
+      "title_preview": {
+        "line_1": "Corail &",
+        "line_2": "Nacre"
+      },
+      "primary": {
+        "url": "https://res.cloudinary.com/demo/image/upload/w_1200,h_1600,c_fill/sample.jpg",
+        "alt": "Corail & Nacre — photo principale (temporaire)"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
+            "alt": "Corail & Nacre — photo 1 (temporaire)"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
+            "alt": "Corail & Nacre — photo 2 (temporaire)"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Corail & Nacre est un studio d'architecture d'intérieur spécialisé dans la rénovation complète d'appartements et de maisons haut de gamme. L'agence s'adresse à une clientèle exigeante pour une prestation sur-mesure, de la qualité d'exécution et des projets clé en main."
+        }
+      ],
+      "type": "Architecte d'intérieur",
+      "videos": [
+        "https://www.instagram.com/reel/DZkN8ooIe-S/",
+        "https://www.instagram.com/reel/DaIX13Do06J/",
+        "https://www.instagram.com/reel/DZ2QZjEoggl/",
+        "https://www.instagram.com/reel/DSxhCwNiL3T/",
+        "https://www.instagram.com/reel/DTppz0FiJfG/"
+      ]
+    }
+  },
+  {
+    "slug": "pouryere",
+    "acf": {
+      "title": "Pouryère",
+      "localisation": "",
+      "project_number": "04",
+      "title_preview": {
+        "line_1": "Pouryère",
+        "line_2": ""
+      },
+      "primary": {
+        "url": "/projets/pouryere/cover.webp",
+        "alt": "Pouryère — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-1.webp",
+            "alt": "Pouryère — photo 1"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-2.webp",
+            "alt": "Pouryère — photo 2"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-3.webp",
+            "alt": "Pouryère — photo 3"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-4.webp",
+            "alt": "Pouryère — photo 4"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-5.webp",
+            "alt": "Pouryère — photo 5"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-6.webp",
+            "alt": "Pouryère — photo 6"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-7.webp",
+            "alt": "Pouryère — photo 7"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-8.webp",
+            "alt": "Pouryère — photo 8"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-9.webp",
+            "alt": "Pouryère — photo 9"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-10.webp",
+            "alt": "Pouryère — photo 10"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-11.webp",
+            "alt": "Pouryère — photo 11"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-12.webp",
+            "alt": "Pouryère — photo 12"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-13.webp",
+            "alt": "Pouryère — photo 13"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-14.webp",
+            "alt": "Pouryère — photo 14"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-15.webp",
+            "alt": "Pouryère — photo 15"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-16.webp",
+            "alt": "Pouryère — photo 16"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-17.webp",
+            "alt": "Pouryère — photo 17"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-18.webp",
+            "alt": "Pouryère — photo 18"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-19.webp",
+            "alt": "Pouryère — photo 19"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/pouryere/slide-20.webp",
+            "alt": "Pouryère — photo 20"
+          },
+          "format": "horizontal"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Pouryère est une startup spécialisée dans l'analyse et le diagnostic des sols, pour les particuliers comme pour les professionnels. Elle s'adresse aux particuliers voulant mieux connaître l'état de leur sol et avoir des conseils sur les plantations adaptées au sol.\n\nLes enjeux de Pouryère sont de sensibiliser au sujet de la pollution du sol pour ensuite éduquer le plus de personne possible. C'est un sujet encore trop peu connu et peu réglementé alors qu'il touche directement la santé des habitants."
+        }
+      ],
+      "type": "Startup greentech",
+      "videos": [
+        "https://www.instagram.com/reel/Dak-479Bpzd/",
+        "https://www.instagram.com/reel/DZ-WWj7t6sI/",
+        "https://www.instagram.com/reel/DYpcLc8ha_X/",
+        "https://www.instagram.com/p/DY2UeTXtR8f/",
+        "https://www.instagram.com/p/DZc2G4avM7L/",
+        "https://www.instagram.com/p/DXHeTaACJVX/"
+      ]
+    }
+  },
+  {
+    "slug": "renoo",
+    "acf": {
+      "title": "Renoo",
+      "localisation": "",
+      "project_number": "03",
+      "title_preview": {
+        "line_1": "Renoo",
+        "line_2": ""
+      },
+      "primary": {
+        "url": "/projets/renoo/cover.webp",
+        "alt": "Renoo — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
+            "alt": "Renoo — photo 1 (temporaire)"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
+            "alt": "Renoo — photo 2 (temporaire)"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Renoo est une entreprise spécialisée dans la rénovation de l'habitat, qui accompagne les propriétaires et les professionnels de l'idée jusqu'aux finitions. Elle s'adresse à ceux qui veulent un bon accompagnement, sans le stress des travaux et un suivi millimétré."
+        }
+      ],
+      "type": "Entreprise de rénovation",
+      "videos": []
+    }
+  },
+  {
+    "slug": "inskip",
+    "acf": {
+      "title": "Inskip",
+      "localisation": "",
+      "project_number": "02",
+      "title_preview": {
+        "line_1": "Inskip",
+        "line_2": ""
+      },
+      "primary": {
+        "url": "/projets/inskip/cover.webp",
+        "alt": "Inskip — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
+            "alt": "Inskip — photo 1 (temporaire)"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
+            "alt": "Inskip — photo 2 (temporaire)"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "INSKIP est un cabinet de conseil en stratégie et innovation qui accompagne startups, grands groupes et institutions dans la conception, le déploiement et la croissance de leurs projets. Il s'adresse à des organisations qui veulent passer de l'idée à l'action.\n\nLe Sales Bootcamp accompagne des fondateurs et équipes commerciales à maitriser leur croissance avec des méthodes de prospection et de vente approuvées."
+        }
+      ],
+      "type": "Coaching en vente",
+      "videos": []
+    }
+  },
+  {
+    "slug": "grof",
+    "acf": {
+      "title": "Grof",
+      "localisation": "",
+      "project_number": "01",
+      "title_preview": {
+        "line_1": "Grof",
+        "line_2": ""
+      },
+      "primary": {
+        "url": "/projets/grof/cover.webp",
+        "alt": "Grof — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
+            "alt": "Grof — photo 1 (temporaire)"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
+            "alt": "Grof — photo 2 (temporaire)"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Grof est une agence d'accompagnement commercial pour les entreprises de services et les fondateurs de PME. Elle aide ses clients à structurer leur prospection, améliorer leur performance commerciale pour accélérer leur croissance, avec un enjeu de mise en valeur des bonnes méthodes de vente et l'exécution efficace."
+        }
+      ],
+      "type": "Coaching en vente",
+      "videos": [
+        "https://www.instagram.com/p/DYjZUIdib3b/",
+        "https://www.instagram.com/p/Daf3AGXFwlN/",
+        "https://www.instagram.com/reel/DYl-PPDEvTE/",
+        "https://www.instagram.com/reel/DY2TvT2DfvC/",
+        "https://www.instagram.com/reel/DZcDDfSgjrE/",
+        "https://www.instagram.com/reel/DZKBjywk5--/",
+        "https://www.instagram.com/reel/DX63GFtjrmi/",
+        "https://www.instagram.com/reel/DaCqJJ2ATp7/",
+        "https://www.instagram.com/reel/DaigEgHjGk1/"
+      ]
     }
   }
 ]
