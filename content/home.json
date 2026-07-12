@@ -8,20 +8,20 @@
     "home_slider": [
       {
         "image": {
-          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/home-1.jpg",
-          "alt": "Photo 1"
+          "url": "/home/bnf.webp",
+          "alt": "Bibliothèque nationale de France, Paris"
         }
       },
       {
         "image": {
-          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/home-2.jpg",
-          "alt": "Photo 2"
+          "url": "/home/biarritz.webp",
+          "alt": "Biarritz"
         }
       },
       {
         "image": {
-          "url": "https://res.cloudinary.com/TON-CLOUD/image/upload/home-3.jpg",
-          "alt": "Photo 3"
+          "url": "/home/helsinki.webp",
+          "alt": "Helsinki"
         }
       }
     ]

@@ -17,7 +17,7 @@
             </span>
         </nav>
         <section id="viewItemVideo">
-            <div v-if="currentVideo" class="item__video__wrapper" :key="videoIndex">
+            <div v-if="currentVideo" class="item__video__wrapper">
                 <iframe :src="getEmbedUrl(currentVideo)" class="item__video" frameborder="0" scrolling="no"
                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen />
             </div>
@@ -56,7 +56,7 @@ const route = useRoute();
 const useGL = useState('gl');
 const useProjectsData = useState('projects');
 const thumbWrapper = ref(null);
-const isTouchDevice = ref(false);
+const isTouchDevice = ref(typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
 let category = 'videos';
 
 const itemData = ref(getItem());
@@ -80,6 +80,7 @@ function getEmbedUrl(url) {
 }
 
 let navLockVideo = false;
+let wheelIdleTimer = null;
 function goVideo(dir) {
     const n = itemData.value.videos?.length ?? 0;
     const target = Math.max(0, Math.min(n - 1, videoIndex.value + dir));
@@ -88,10 +89,13 @@ function goVideo(dir) {
 function onWheelVideo(event) {
     if (useGL.value.indexMenuOpen) return;
     const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-    if (Math.abs(delta) < 4 || navLockVideo) return;
+    if (Math.abs(delta) < 6) return;
+    // 1 vidéo par geste : le verrou reste actif tant que l'inertie du scroll continue
+    clearTimeout(wheelIdleTimer);
+    wheelIdleTimer = setTimeout(() => { navLockVideo = false; }, 220);
+    if (navLockVideo) return;
     navLockVideo = true;
     goVideo(delta > 0 ? 1 : -1);
-    setTimeout(() => { navLockVideo = false; }, 450);
 }
 function onKeysVideo(event) {
     if (useGL.value.indexMenuOpen) return;
@@ -106,7 +110,6 @@ onBeforeRouteLeave((to, from, next) => {
 
 onMounted(async () => {
     await nextTick();
-    isTouchDevice.value = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     onMountedUID(useGL, isTouchDevice, route);
     document.addEventListener('wheel', onWheelVideo, { passive: true });
     document.addEventListener('keydown', onKeysVideo);
@@ -114,6 +117,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+    clearTimeout(wheelIdleTimer);
     document.removeEventListener('wheel', onWheelVideo);
     document.removeEventListener('keydown', onKeysVideo);
 })
