@@ -42,7 +42,10 @@ function eventSlideScrolling(event) {
     const thumbnails = document.querySelectorAll('.footer__thumb__img');
     const itemHandler = document.querySelectorAll('.cross__handler__item');
     let homeSlider = event.currentTarget.useGL.value.homeSlider;
-    if (event.deltaY > 0 && homeSlider.actualSlide !== homeSlider.store.length - 1) {
+    // axe dominant : bas/droite => section suivante, haut/gauche => précédente
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    if (Math.abs(delta) < 4) return;
+    if (delta > 0 && homeSlider.actualSlide !== homeSlider.store.length - 1) {
         if (isScrolling) return;
         isScrolling = true;
         if (homeSlider.actualSlide < homeSlider.store.length - 1) {
@@ -56,7 +59,7 @@ function eventSlideScrolling(event) {
                 isScrolling = false;
             }, 1000);
         }
-    } else if (event.deltaY < 0) {
+    } else if (delta < 0) {
         if (homeSlider.actualSlide > 0) {
             if (isScrolling) return;
             isScrolling = true;
