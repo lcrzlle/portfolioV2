@@ -32,48 +32,41 @@ function addClickEvents(useGL) {
     });
     useGL.value.homeSlider.isScrolling = false;
     document.addEventListener('wheel', eventSlideScrolling, true);
+    if (homeSwipeCleanup) homeSwipeCleanup();
+    homeSwipeCleanup = addSwipeNav((dir) => stepHome(useGL, dir));
     document.useGL = useGL;
 }
 
 let isScrolling = false;
+let homeSwipeCleanup = null;
+
+// Une étape de navigation (dir = +1 suivant, -1 précédent), partagée molette + swipe.
+function stepHome(useGL, dir) {
+    if (isScrolling) return;
+    const homeSlider = useGL.value.homeSlider;
+    if (!homeSlider) return;
+    const target = homeSlider.actualSlide + dir;
+    if (target < 0 || target > homeSlider.store.length - 1) return;
+    isScrolling = true;
+    const thumbnails = document.querySelectorAll('.footer__thumb__img');
+    const itemHandler = document.querySelectorAll('.cross__handler__item');
+    removeAllSelectedThumbnails('.footer__thumb__img');
+    thumbnails[target].classList.add('is__selected');
+    slideToItem(useGL, target);
+    itemHandler.forEach((el) => {
+        el.style.transform = `translateY(${(homeSlider.actualSlide) * 100}%)`;
+    });
+    setTimeout(() => {
+        isScrolling = false;
+    }, 1000);
+}
 
 function eventSlideScrolling(event) {
     if (event.currentTarget.useGL.value.indexMenuOpen) return;
-    const thumbnails = document.querySelectorAll('.footer__thumb__img');
-    const itemHandler = document.querySelectorAll('.cross__handler__item');
-    let homeSlider = event.currentTarget.useGL.value.homeSlider;
     // axe dominant : bas/droite => section suivante, haut/gauche => précédente
     const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
     if (Math.abs(delta) < 4) return;
-    if (delta > 0 && homeSlider.actualSlide !== homeSlider.store.length - 1) {
-        if (isScrolling) return;
-        isScrolling = true;
-        if (homeSlider.actualSlide < homeSlider.store.length - 1) {
-            removeAllSelectedThumbnails('.footer__thumb__img');
-            thumbnails[homeSlider.actualSlide + 1].classList.add('is__selected');
-            slideToItem(event.currentTarget.useGL, homeSlider.actualSlide + 1);
-            itemHandler.forEach((el) => {
-                el.style.transform = `translateY(${(homeSlider.actualSlide) * 100}%)`;
-            });
-            setTimeout(() => {
-                isScrolling = false;
-            }, 1000);
-        }
-    } else if (delta < 0) {
-        if (homeSlider.actualSlide > 0) {
-            if (isScrolling) return;
-            isScrolling = true;
-            removeAllSelectedThumbnails('.footer__thumb__img');
-            thumbnails[homeSlider.actualSlide - 1].classList.add('is__selected');
-            slideToItem(event.currentTarget.useGL, homeSlider.actualSlide - 1);
-            itemHandler.forEach((el) => {
-                el.style.transform = `translateY(${(homeSlider.actualSlide) * 100}%)`;
-            });
-            setTimeout(() => {
-                isScrolling = false;
-            }, 1000);
-        }
-    }
+    stepHome(event.currentTarget.useGL, delta > 0 ? 1 : -1);
 };
 
 export function onMountedIndex(useGL, sliderItemPlaceholder, route) {
@@ -104,6 +97,7 @@ export function onMountedIndex(useGL, sliderItemPlaceholder, route) {
 
 export function onBeforeLeaveIndex(to, from, next, useGL) {
     document.removeEventListener("wheel", eventSlideScrolling, true);
+    if (homeSwipeCleanup) { homeSwipeCleanup(); homeSwipeCleanup = null; }
     if (to.name == 'photos' || to.name == 'videos') {
         const homeToSlider = gsap.timeline();
         splitReveal('.reveal', true);

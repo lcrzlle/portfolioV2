@@ -92,6 +92,7 @@ function selectThumbUID(target) {
 }
 
 let navLock = false;
+let uidSwipeCleanup = null;
 
 // Navigation unifiée (molette, flèches, vignettes, mosaïque).
 // target : -1 = mosaïque (à gauche de la photo 1), 0..N-1 = photos.
@@ -168,6 +169,8 @@ export function addClickEventUID(useGL, route) {
 
     document.addEventListener('keydown', handleKeysUID, true);
     document.addEventListener('wheel', handleWheelUID, true);
+    if (uidSwipeCleanup) uidSwipeCleanup();
+    uidSwipeCleanup = addSwipeNav((dir) => navigateUID(useGL, useGL.itemSlider.actualSlide + dir));
     document.useGL = useGL;
 }
 
@@ -203,6 +206,7 @@ export function onMountedUID(useGL, isTouchDevice, route) {
 export function onBeforeLeaveUID(to, from, next, useGL, category) {
     document.removeEventListener("wheel", handleWheelUID, true);
     document.removeEventListener("keydown", handleKeysUID, true);
+    if (uidSwipeCleanup) { uidSwipeCleanup(); uidSwipeCleanup = null; }
     if (to.name == category) {
         textReveal('.reveal-text-project', true);
         const timeline = gsap.timeline();

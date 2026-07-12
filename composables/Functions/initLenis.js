@@ -5,6 +5,7 @@ export function initLenis(useGL) {
 		const lenisInstance = new Lenis({
 			orientation: 'horizontal',
 			gestureOrientation: 'both',
+			syncTouch: true,
 			autoResize: true,
 		});
 		lenisInstance.scrollTo(0, { immediate: true });

@@ -113,11 +113,14 @@ onMounted(async () => {
     onMountedUID(useGL, isTouchDevice, route);
     document.addEventListener('wheel', onWheelVideo, { passive: true });
     document.addEventListener('keydown', onKeysVideo);
+    swipeCleanup = addSwipeNav((dir) => goVideo(dir));
     unlockUI();
 })
 
+let swipeCleanup = null;
 onUnmounted(() => {
     clearTimeout(wheelIdleTimer);
+    if (swipeCleanup) swipeCleanup();
     document.removeEventListener('wheel', onWheelVideo);
     document.removeEventListener('keydown', onKeysVideo);
 })
