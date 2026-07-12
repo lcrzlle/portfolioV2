@@ -143,6 +143,14 @@ onMounted(async () => {
         }
     }
 
+    .home__thumb__src {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
     .footer__thumb__img.footer__thumb__dot {
         width: auto;
         aspect-ratio: auto;

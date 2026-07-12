@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import HomeSlider from '../Elements/HomeSlider';
 
 export async function initHomeSlider(useGL, sliderItemPlaceholder) {
-    const domElements = [...document.querySelectorAll('.footer__thumb__img')];
+    const domElements = [...document.querySelectorAll('.home__thumb__src')];
     useGL.value.homeSlider = new HomeSlider(domElements, sliderItemPlaceholder.value);
     gsap.to(useGL.value.camera.instance.position, {
         z: 590

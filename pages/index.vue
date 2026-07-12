@@ -28,7 +28,8 @@
 	<LayoutFooter>
 		<ul class="footer__thumb__inner">
 			<li v-if="homeSlider" v-for="images in homeSlider">
-				<NuxtImg class="footer__thumb__img" :src="images.image.url" :alt="images.image.alt" />
+				<img class="home__thumb__src" :src="images.image.url" :alt="images.image.alt" />
+					<span class="footer__thumb__img footer__thumb__dot" aria-hidden="true"></span>
 			</li>
 		</ul>
 	</LayoutFooter>
