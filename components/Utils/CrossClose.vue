@@ -46,10 +46,11 @@
     //     bottom: -10%;
     // }
 
-    // Mobile : remonte la croix sous "Entrer dans le projet" (contexte en dessous)
+    // Mobile : croix dans le flux, juste sous "Entrer dans le projet" (contexte en dessous)
     @media (max-width: 500px) {
-        bottom: auto;
-        top: 34vh;
+        position: static;
+        transform: none;
+        margin-top: 1.1rem;
 
         .cross__wrapper__line {
             display: none;

@@ -51,13 +51,26 @@
 	}
 
 	#pagePreviewWrapper {
-		padding-top: 10vh;
+		padding-top: 20vh;
+	}
+
+	// resserre le groupe titre / entrer / croix
+	#pagePreview h3 {
+		margin-bottom: 0.6rem;
+	}
+
+	#pagePreview h4 {
+		margin-bottom: 0.6rem;
+	}
+
+	.preview__item__infos {
+		margin-top: 0.4rem;
 	}
 
 	.preview__context {
 		bottom: calc($space-s * 1.5);
 		max-width: 90vw;
-		max-height: 42vh;
+		max-height: 40vh;
 		overflow-y: auto;
 		pointer-events: none;
 	}

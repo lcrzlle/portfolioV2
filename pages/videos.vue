@@ -35,8 +35,8 @@
 				<span v-if="itemTitlePreview[0]" class="reveal-preview">{{ itemTitlePreview[0] }}</span>
 				<span v-if="itemTitlePreview[1]" class="reveal-preview">{{ itemTitlePreview[1] }}</span>
 			</h3>
-			<h4 class="preview__item__title">
-				<span v-if="itemLocation" class="reveal-preview">{{ itemLocation }}</span>
+			<h4 v-if="itemLocation" class="preview__item__title">
+				<span class="reveal-preview">{{ itemLocation }}</span>
 			</h4>
 			<div v-if="itemContext && itemContext.length" class="preview__context">
 				<div v-for="(section, i) in itemContext" :key="i" class="preview__context__section">
