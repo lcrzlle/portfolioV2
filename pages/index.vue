@@ -85,7 +85,14 @@ onMounted(async () => {
 	cross.style.cursor = 'pointer';
 	isChrome.value = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 	await nextTick();
-	await ensureImagesLoaded('.home__thumb__src');
+	// Préchargement forcé des fonds (robuste mobile : le lazy-load ignore les <img> cachés)
+	await Promise.all((homeSlider.value || []).map((s) => new Promise((res) => {
+		const im = new Image();
+		im.onload = res;
+		im.onerror = res;
+		im.src = s.image.url;
+		setTimeout(res, 2500);
+	})));
 	if (!useGL.value.firstLoadApp) {
 		resetNavHeader();
 	}

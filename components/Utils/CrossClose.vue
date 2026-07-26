@@ -45,6 +45,20 @@
     // @media (min-height: 666px) {
     //     bottom: -10%;
     // }
+
+    // Mobile : remonte la croix sous "Entrer dans le projet" (contexte en dessous)
+    @media (max-width: 500px) {
+        bottom: auto;
+        top: 34vh;
+
+        .cross__wrapper__line {
+            display: none;
+        }
+
+        #pageCrossClose {
+            margin-bottom: 0;
+        }
+    }
 }
 #pageCrossClose {
     cursor: pointer;
