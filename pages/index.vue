@@ -85,7 +85,7 @@ onMounted(async () => {
 	cross.style.cursor = 'pointer';
 	isChrome.value = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 	await nextTick();
-	await ensureImagesLoaded('.footer__thumb__img');
+	await ensureImagesLoaded('.home__thumb__src');
 	if (!useGL.value.firstLoadApp) {
 		resetNavHeader();
 	}
