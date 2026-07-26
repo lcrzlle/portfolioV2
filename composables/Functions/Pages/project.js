@@ -17,7 +17,7 @@ export function initProjectPage(useGL, pagePreviewRef, route, isOnPreview, categ
                 lock: true
             });
         } else {
-            let delayValue = useGL.value.firstLoadApp ? 3500 : 0;
+            let delayValue = useGL.value.firstLoadApp ? 2000 : 0;
             setTimeout(() => {
                 moveSliderMiddle(useGL);
             }, delayValue);
@@ -177,7 +177,7 @@ export function onMountedProject(useGL, route, routeName, isTouchDevice) {
     const cross = document.getElementById('pageCross');
     cross.style.pointerEvents = 'none';
     isTouchDevice.value = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    let delayValue = useGL.value.firstLoadApp ? 3500 : 0;
+    let delayValue = useGL.value.firstLoadApp ? 2000 : 0;
 
     setTimeout(() => {
         if (route.name !== (routeName + '-uid')) {

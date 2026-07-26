@@ -70,7 +70,7 @@ function eventSlideScrolling(event) {
 };
 
 export function onMountedIndex(useGL, sliderItemPlaceholder, route) {
-    let delayValue = useGL.value.firstLoadApp ? 3800 : 0;
+    let delayValue = useGL.value.firstLoadApp ? 2000 : 0;
     setTimeout(() => {
         useGL.value.firstLoadProject = true;
         useGL.value.currentCategory = 'photos';

@@ -12,7 +12,7 @@ export function initSliderUID(useGL, route) {
 }
 
 export function enterSliderUID(useGL) {
-    let delayValue = useGL.value.firstLoadApp ? 3700 : 0;
+    let delayValue = useGL.value.firstLoadApp ? 2000 : 0;
 
     setTimeout(() => {
         gsap.to(useGL.value.itemSlider.store[0].mesh.position, {
@@ -176,7 +176,7 @@ export function addClickEventUID(useGL, route) {
 
 export function onMountedUID(useGL, isTouchDevice, route) {
     isTouchDevice.value = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    let delayValue = useGL.value.firstLoadApp ? 3500 : 0;
+    let delayValue = useGL.value.firstLoadApp ? 2000 : 0;
     if (useGL.value.ASlider) {
         useGL.value.ASlider.lenis.stop();
     }

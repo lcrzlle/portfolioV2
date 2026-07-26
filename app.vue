@@ -125,14 +125,14 @@ onMounted(async () => {
     await nextTick();
     try { splitReveal('.reveal-loading', false); } catch(e) {}
     setTimeout(() => {
-        initLoadingScreen(document.querySelector('.loading__count'), 0, 100, 2500, () => {
+        initLoadingScreen(document.querySelector('.loading__count'), 0, 100, 1300, () => {
             try { splitReveal('.reveal-loading', true); } catch(e) {}
             dismissLoadingScreen();
         });
-    }, 700);
+    }, 400);
 
-    // Filet de sécurité — ferme l'écran de chargement après 6s quoi qu'il arrive
-    setTimeout(dismissLoadingScreen, 6000);
+    // Filet de sécurité — ferme l'écran de chargement après 3.5s quoi qu'il arrive
+    setTimeout(dismissLoadingScreen, 3500);
 });
 </script>
 
