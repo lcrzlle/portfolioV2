@@ -5,14 +5,12 @@
     "page_subtitle_2": "Mentions",
     "page_subtitle_3": "Portfolio",
     "page_credit_1": {
-      "title": "Développement",
-      "text": "Nom du développeur",
-      "url": "https://example.com"
+      "title": "Conception & Développement",
+      "text": "Mickael Laval"
     },
     "page_credit_2": {
-      "title": "Design",
-      "text": "Nom du designer",
-      "url": "https://example.com"
+      "title": "Contenu photos/vidéos",
+      "text": "Léo Crouzille"
     },
     "page_credit_3": {
       "title": "Typographie",

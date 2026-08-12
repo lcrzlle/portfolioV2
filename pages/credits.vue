@@ -10,40 +10,17 @@
 				<span class="reveal">{{ useCreditsData.acf.page_credit_1.title }}</span>
 			</h2>
 			<div class="credit__link__wrapper">
-				<a :href="useCreditsData.acf.page_credit_1.url" target="blank" class="footer__email__link button-link">
-					<span class="footer__email__inner reveal">
-						{{ useCreditsData.acf.page_credit_1.text }}
-					</span>
-				</a>
+				<span class="footer__email__inner reveal">
+					{{ useCreditsData.acf.page_credit_1.text }}
+				</span>
 			</div>
 			<h2>
 				<span class="reveal">{{ useCreditsData.acf.page_credit_2.title }}</span>
 			</h2>
 			<div class="credit__link__wrapper">
-				<a :href="useCreditsData.acf.page_credit_2.url" target="blank" class="footer__email__link button-link">
-					<span class="footer__email__inner reveal">
-						{{ useCreditsData.acf.page_credit_2.text }}
-					</span>
-				</a>
-			</div>
-			<h2>
-				<span class="reveal">{{ useCreditsData.acf.page_credit_3.title }}</span>
-			</h2>
-			<div class="credit__link__wrapper">
-				<a :href="useCreditsData.acf.page_credit_3.url_1" target="blank"
-					class="footer__email__link button-link">
-					<span class="footer__email__inner reveal">
-						{{ useCreditsData.acf.page_credit_3.text_1 }}
-					</span>
-				</a>
-			</div>
-			<div class="credit__link__wrapper" style="margin-top: 0.1rem;">
-				<a :href="useCreditsData.acf.page_credit_3.url_2" target="blank"
-					class="footer__email__link button-link">
-					<span class="footer__email__inner reveal">
-						{{ useCreditsData.acf.page_credit_3.text_2 }}
-					</span>
-				</a>
+				<span class="footer__email__inner reveal">
+					{{ useCreditsData.acf.page_credit_2.text }}
+				</span>
 			</div>
 		</div>
 		<div id="pageSlider">
