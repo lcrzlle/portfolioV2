@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outbound Cup — proposition de captation vidéo · Léo Crouzille</title>
+<meta name="description" content="Proposition de captation et de production vidéo pour l'Outbound Cup, Station F.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   TITRES — Knockout HTF68 Full Featherweight (Hoefler&Co).
+   Non distribuable : si vous avez la licence Typography.com, ajoutez
+   leur script d'intégration dans le <head>. La police prendra le relais
+   automatiquement, Archivo servant de substitut d'ici là.
+   ===================================================================== */
+:root{
+  --bg:#0A0B0D;
+  --bg-2:#121418;
+  --bg-3:#191C21;
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.18);
+  --fg:#F6F6F4;
+  --fg-2:#9EA0A5;
+  --fg-3:#6A6C72;
+  --green:#BFF500;
+  --blue:#006DFF;
+  --wrap:1080px;
+  --display:"Knockout HTF68 Full Featherweight","Archivo",system-ui,sans-serif;
+  --body:"Space Grotesk",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.sec{padding:88px 0}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.06;letter-spacing:-.01em;font-variation-settings:"wdth" 118}
+h1{font-size:clamp(2.3rem,5.6vw,4rem)}
+h2{font-size:clamp(1.8rem,3.4vw,2.7rem)}
+h3{font-size:1.15rem;font-variation-settings:"wdth" 112}
+p{margin:0}
+.eyebrow{font-family:var(--body);font-size:.85rem;font-weight:500;color:var(--green);margin-bottom:18px;letter-spacing:.01em}
+.lede{font-size:1.1rem;color:var(--fg-2);max-width:60ch}
+.small{font-size:.92rem;color:var(--fg-2);line-height:1.5}
+.rule{height:1px;border:0;margin:0;background:linear-gradient(90deg,transparent,var(--blue) 22%,var(--green) 78%,transparent);opacity:.5}
+
+/* ---------- couverture ---------- */
+.mosaic{display:grid;gap:4px;grid-template-columns:2fr 1fr 1fr;grid-template-rows:repeat(2,minmax(130px,20vw))}
+.shot{margin:0;background:var(--bg-3);overflow:hidden}
+.shot:first-child{grid-row:span 2}
+.shot img{width:100%;height:100%;object-fit:cover}
+.masthead{padding:64px 24px 44px}
+.stat{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+.stat b{font-family:var(--display);font-weight:400;font-size:2.6rem;color:var(--green);font-variant-numeric:tabular-nums;line-height:1}
+.stat span{font-size:.95rem;color:var(--fg-2);max-width:22ch;line-height:1.35}
+.masthead h1{max-width:17ch;margin-bottom:26px}
+.byline{color:var(--fg-2);font-size:1rem}
+
+/* ---------- lecture ---------- */
+.read h2{margin-bottom:28px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px 48px}
+.cols p{color:var(--fg-2);font-size:1.1rem;max-width:56ch}
+
+/* ---------- références ---------- */
+.case{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);overflow:hidden}
+.case+.case{margin-top:14px}
+.case__head{all:unset;box-sizing:border-box;display:flex;width:100%;cursor:pointer;align-items:center;justify-content:space-between;gap:20px;padding:26px}
+.case__head:hover{background:var(--bg-3)}
+.case__name{display:block;font-family:var(--display);font-size:1.6rem;font-weight:400;font-variation-settings:"wdth" 115}
+.case__meta{display:block;font-size:.92rem;color:var(--fg-2);margin-top:5px}
+.chev{flex:none;width:22px;height:22px;stroke:var(--fg-2);fill:none;stroke-width:1.8;transition:transform .22s ease}
+.case[data-open="true"] .chev{transform:rotate(180deg);stroke:var(--green)}
+.case__body{padding:0 26px 28px}
+.case[data-open="false"] .case__body{display:none}
+.project+.project{margin-top:30px;border-top:1px solid var(--line);padding-top:30px}
+.project h3{margin-bottom:14px}
+.frame{background:var(--bg-3);border-radius:12px;overflow:hidden;position:relative}
+.frame video{width:100%;height:100%;object-fit:cover}
+.frame iframe{width:100%;height:100%;border:0;display:block}
+.solo{max-width:270px;margin-top:14px}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px}
+.frame--wide{aspect-ratio:16/9}
+.frame--tall{aspect-ratio:9/16}
+.frame::after{content:attr(data-hint);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-size:.8rem;color:var(--fg-3);pointer-events:none}
+.frame:has(video[src]:not([src=""]))::after{content:none}
+.verticals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.note{margin-top:16px;font-size:.95rem;color:var(--fg-2);max-width:64ch}
+.quote{margin:22px 0 0;padding-left:18px;border-left:2px solid var(--blue);font-size:1rem}
+.quote cite{display:block;margin-top:8px;font-style:normal;font-size:.88rem;color:var(--fg-3)}
+
+/* ---------- zones ---------- */
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-top:36px}
+.zone{background:var(--bg-2);border:1px solid var(--line);border-radius:16px;padding:28px}
+.zone h3{margin-bottom:18px}
+.zone ul{list-style:none;margin:0;padding:0}
+.zone li{position:relative;padding-left:26px;font-size:.95rem;color:var(--fg-2);line-height:1.5}
+.zone li+li{margin-top:11px}
+.zone li::before{content:"";position:absolute;left:3px;top:.48em;width:9px;height:9px;border-left:1.8px solid var(--green);border-bottom:1.8px solid var(--green);transform:rotate(-45deg)}
+
+/* ---------- séquence ---------- */
+.steps{margin-top:36px;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:baseline;padding:28px 0;border-bottom:1px solid var(--line)}
+.step__n{font-family:var(--display);font-size:1.05rem;color:var(--green);font-variant-numeric:tabular-nums}
+.step h3{margin-bottom:7px}
+.step__when{font-size:.85rem;color:var(--fg-3);white-space:nowrap}
+
+/* ---------- devis ---------- */
+.close{text-align:center;padding:100px 0 108px}
+.close h2{margin:0 auto 18px;max-width:20ch}
+.btn{display:inline-block;margin-top:30px;text-decoration:none;font-family:var(--body);font-weight:500;font-size:1rem;background:var(--green);color:#0A0B0D;padding:16px 38px;border-radius:10px;transition:background .18s ease,color .18s ease}
+.btn:hover{background:var(--blue);color:#fff}
+.contact{margin-top:26px;font-size:.95rem;color:var(--fg-2)}
+.contact a{text-decoration:none;border-bottom:1px solid var(--line-2)}
+
+@media (max-width:720px){
+  .sec{padding:60px 0}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,112px)}
+  .shot:first-child{grid-column:span 2;grid-row:auto}
+  .masthead{padding:44px 24px 8px}
+  .stat{flex-direction:column;gap:4px}
+  .verticals{grid-template-columns:1fr;max-width:270px}
+  .step{grid-template-columns:44px 1fr;gap:16px}
+  .step__when{grid-column:2;white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mosaic">
+    <figure class="shot"><img src="images/cover-1.jpg" alt="Prise de parole devant le public d'un événement commercial"></figure>
+    <figure class="shot"><img src="images/cover-2.jpg" alt="Échanges entre participants pendant un temps de networking"></figure>
+    <figure class="shot"><img src="images/cover-3.jpg" alt="Public assis pendant une conférence"></figure>
+    <figure class="shot"><img src="images/cover-4.jpg" alt="Participants réunis autour d'un ordinateur portable"></figure>
+    <figure class="shot"><img src="images/cover-5.jpg" alt="Intervenant devant un mur de marque pendant un atelier"></figure>
+  </div>
+  <div class="wrap masthead">
+    <h1>Outbound Cup</h1>
+    <p class="byline">18 septembre · 9h – 22h · Station F, Paris</p>
+  </div>
+</header>
+
+<div class="wrap"><hr class="rule"></div>
+
+<section class="sec">
+  <div class="wrap read">
+    <p class="eyebrow">Le brief</p>
+    <h2>Utiliser l'événement pour installer<br>de la notoriété sur plusieurs mois</h2>
+    <div class="cols">
+      <p>
+        Une journée de compétition à Station F : des SDR et des commerciaux s'affrontent
+        pour décrocher le maximum de rendez-vous, entre conférences, tables rondes et
+        coaching en direct, jusqu'à la remise des prix et la soirée.
+      </p>
+      <p>
+        La captation ne cherche donc pas à retracer la journée dans l'ordre. Elle vise
+        les moments de bascule de la compétition et les réactions qu'ils provoquent,
+        parce que ce sont eux qui feront tenir la diffusion pendant les semaines qui suivent.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<!-- RÉFÉRENCES — remplacer les src="" des <video>, ajouter poster="images/…" -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Références</p>
+    <h2>Deux clients du même terrain</h2>
+
+    <div class="case" data-open="true" style="margin-top:36px">
+      <button class="case__head" aria-expanded="true" aria-controls="case-inskip">
+        <span>
+          <span class="case__name">Inskip</span>
+          <span class="case__meta">Deux formats de formation commerciale couverts</span>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="case__body" id="case-inskip">
+        <div class="project">
+          <h3>Scaleup Challenge</h3>
+          <p class="small" style="margin:-8px 0 14px">Cible : scaleups</p>
+          <div class="solo">
+            <div class="frame frame--tall">
+              <iframe src="https://www.youtube-nocookie.com/embed/TgI9k39QgIc" title="Scaleup Challenge — Inskip" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          <p class="note">Contexte en une ligne. Livrables produits. La décision de réalisation qui a porté le film.</p>
+        </div>
+        <div class="project">
+          <h3>Sales Bootcamp</h3>
+          <p class="small" style="margin:-8px 0 14px">Cible : startups early stage et solopreneurs</p>
+          <div class="pair">
+            <div class="frame frame--wide">
+              <iframe src="https://www.youtube-nocookie.com/embed/uoLfJBUM8_M" title="Sales Bootcamp — Inskip" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="frame frame--wide">
+              <iframe src="https://www.youtube-nocookie.com/embed/BcmI3875qVE" title="Sales Bootcamp — Inskip" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="solo">
+            <div class="frame frame--tall">
+              <iframe src="https://www.youtube-nocookie.com/embed/ShEBpMzc0Jk" title="Sales Bootcamp — Inskip, format vertical" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          <p class="note">Contexte en une ligne. Livrables produits. La décision de réalisation qui a porté la série.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case" data-open="false">
+      <button class="case__head" aria-expanded="false" aria-controls="case-grof">
+        <span>
+          <span class="case__name">GROF</span>
+          <span class="case__meta">Coaching commercial B2B, deux formats événementiels</span>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="case__body" id="case-grof">
+        <div class="project">
+          <h3>Call Lanta</h3>
+          <div class="verticals">
+            <div class="frame frame--tall" data-hint="vertical 1"><video src="" controls preload="metadata" playsinline></video></div>
+            <div class="frame frame--tall" data-hint="vertical 2"><video src="" controls preload="metadata" playsinline></video></div>
+            <div class="frame frame--tall" data-hint="vertical 3"><video src="" controls preload="metadata" playsinline></video></div>
+          </div>
+          <p class="note">Contexte en une ligne. Livrables produits. La décision de réalisation qui a porté la série.</p>
+        </div>
+        <div class="project">
+          <h3>Atelier Builders Factory</h3>
+          <div class="frame frame--wide" data-hint="format à préciser"><video src="" controls preload="metadata" playsinline></video></div>
+          <p class="note">Contexte en une ligne. Livrables produits. La décision de réalisation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Le besoin</p>
+    <h2>Ce qu'il faut ramener de la journée</h2>
+    <div class="zones">
+      <div class="zone">
+        <h3>Film Hero Event, 1 min 30</h3>
+        <ul>
+          <li>Arrivée des participants et ouverture des portes</li>
+          <li>Ambiance Station F</li>
+          <li>Compétition live et scoreboard</li>
+          <li>Coaching en direct</li>
+          <li>Conférences et tables rondes</li>
+          <li>Moments de tension, applaudissements, réactions du public</li>
+          <li>Punchlines de l'humoriste</li>
+          <li>Remise des prix, trophées, vainqueurs, célébrations</li>
+          <li>Networking, cocktail, DJ</li>
+        </ul>
+      </div>
+      <div class="zone">
+        <h3>30 à 50 shorts verticaux</h3>
+        <ul>
+          <li>Un format par intervenant</li>
+          <li>Un format par partenaire</li>
+          <li>Compilations thématiques sur une même question</li>
+          <li>Interviews rapides face caméra, réponses courtes</li>
+          <li>Interviews des gagnants, à chaud après la remise des prix</li>
+          <li>Sous-titres, logo intégré, accroche dès la première seconde</li>
+        </ul>
+      </div>
+      <div class="zone">
+        <h3>Deux zones à tenir</h3>
+        <ul>
+          <li>Compétition : scoreboard, coaching, public, émotions, scène</li>
+          <li>Partenaires : stands, démonstrations, échanges spontanés</li>
+          <li>Backstage et coulisses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="rule"></div>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Le planning</p>
+    <h2>De la préparation à la livraison des contenus</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step__n">01</span>
+        <span>
+          <h3>Préproduction</h3>
+          <p class="small">Plan de tournage par zone et liste de questions validée avec vous</p>
+        </span>
+        <span class="step__when">une semaine avant</span>
+      </div>
+      <div class="step">
+        <span class="step__n">02</span>
+        <span>
+          <h3>Captation</h3>
+          <p class="small">Journée complète, de l'arrivée des participants à la soirée</p>
+        </span>
+        <span class="step__when">jour J</span>
+      </div>
+      <div class="step">
+        <span class="step__n">03</span>
+        <span>
+          <h3>Film Hero Event, 1 min 30</h3>
+          <p class="small">Montage rythmé, sound design, étalonnage, deux allers-retours inclus</p>
+        </span>
+        <span class="step__when">J+10</span>
+      </div>
+      <div class="step">
+        <span class="step__n">04</span>
+        <span>
+          <h3>30 shorts verticaux</h3>
+          <p class="small">Livraison étalée sur trois semaines. Je propose de commencer par les gagnants et les partenaires, puis les compilations thématiques qui se diffusent plus longtemps — l'ordre reste à caler avec vous</p>
+        </span>
+        <span class="step__when">sur trois semaines</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS — remplacer le href -->
+<section class="close">
+  <div class="wrap">
+    <h2>Le détail chiffré est dans le devis</h2>
+    <p class="lede" style="margin:0 auto">Options et conditions comprises.</p>
+    <a class="btn" href="#">Voir le devis</a>
+    <p class="contact">
+      <a href="mailto:contact@leocrouzille.com">contact@leocrouzille.com</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+33782730932">07 82 73 09 32</a>
+    </p>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.case').forEach(function(box){
+  var btn = box.querySelector('.case__head');
+  btn.addEventListener('click', function(){
+    var open = box.dataset.open === 'true';
+    box.dataset.open = open ? 'false' : 'true';
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+});
+</script>
+
+</body>
+</html>
