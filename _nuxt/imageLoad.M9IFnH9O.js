@@ -1,0 +1,1 @@
+function s(n){const t=document.querySelectorAll(n);if(!t.length)return Promise.resolve();const o=[...t].map(r=>new Promise(e=>{r.complete?e():(r.addEventListener("load",e,{once:!0}),r.addEventListener("error",e,{once:!0}),setTimeout(e,4e3))}));return Promise.all(o)}export{s as e};
