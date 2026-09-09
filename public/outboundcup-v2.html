@@ -338,7 +338,7 @@ tr.total td.hi{background:rgba(191,245,0,.09)}
 
       <div class="member">
         <div class="frame">
-          <a class="yt yt--v" href="https://www.youtube.com/watch?v=TgI9k39QgIc" target="_blank" rel="noopener" aria-label="Scaleup Challenge, Léo"><img src="https://i.ytimg.com/vi/TgI9k39QgIc/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/TgI9k39QgIc/hqdefault.jpg'" alt=""></a>
+          <a class="yt yt--v" href="https://www.youtube.com/watch?v=TgI9k39QgIc" aria-label="Scaleup Challenge, Léo"><img src="https://i.ytimg.com/vi/TgI9k39QgIc/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/TgI9k39QgIc/hqdefault.jpg'" alt=""></a>
         </div>
         <div class="member__txt">
           <h3>Léo</h3>
@@ -349,7 +349,7 @@ tr.total td.hi{background:rgba(191,245,0,.09)}
 
       <div class="member">
         <div class="frame">
-          <a class="yt" href="https://www.youtube.com/watch?v=51BG1FWOsQ8" target="_blank" rel="noopener" aria-label="Exemple de réalisation, Mathias"><img src="https://i.ytimg.com/vi/51BG1FWOsQ8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/51BG1FWOsQ8/hqdefault.jpg'" alt=""></a>
+          <a class="yt" href="https://www.youtube.com/watch?v=51BG1FWOsQ8" aria-label="Exemple de réalisation, Mathias"><img src="https://i.ytimg.com/vi/51BG1FWOsQ8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/51BG1FWOsQ8/hqdefault.jpg'" alt=""></a>
         </div>
         <div class="member__txt">
           <h3>Mathias</h3>
@@ -371,7 +371,7 @@ tr.total td.hi{background:rgba(191,245,0,.09)}
 
       <div class="member">
         <div class="frame">
-          <a class="yt" href="https://www.youtube.com/watch?v=iNVcKonKaLY" target="_blank" rel="noopener" aria-label="Exemple de réalisation, Valentin"><img src="https://i.ytimg.com/vi/iNVcKonKaLY/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/iNVcKonKaLY/hqdefault.jpg'" alt=""></a>
+          <a class="yt" href="https://www.youtube.com/watch?v=iNVcKonKaLY" aria-label="Exemple de réalisation, Valentin"><img src="https://i.ytimg.com/vi/iNVcKonKaLY/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/iNVcKonKaLY/hqdefault.jpg'" alt=""></a>
         </div>
         <div class="member__txt">
           <h3>Valentin</h3>
@@ -417,6 +417,22 @@ tr.total td.hi{background:rgba(191,245,0,.09)}
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
 <script>
+// vignette -> lecteur intégré, sans quitter la page
+document.querySelectorAll('.yt').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var id = a.getAttribute('href').split('v=')[1];
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1';
+    f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    f.setAttribute('allowfullscreen','');
+    f.style.width = '100%';
+    f.style.height = '100%';
+    f.style.border = '0';
+    a.replaceWith(f);
+  });
+});
+
 (function(){
   var v = document.getElementById('lucas');
   if (!v) return;
