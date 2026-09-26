@@ -16,9 +16,9 @@
                 </svg>
             </span>
         </nav>
-        <section id="viewItemVideo">
-            <div v-if="currentVideo" class="item__video__wrapper">
-                <iframe :src="getEmbedUrl(currentVideo)" class="item__video" frameborder="0" scrolling="no"
+        <section id="viewItemVideo" ref="videoScroll">
+            <div v-for="(video, index) in itemData.videos" :key="index" class="item__video__wrapper">
+                <iframe :src="getEmbedUrl(video)" class="item__video" frameborder="0" scrolling="no" loading="lazy"
                     allow="autoplay; fullscreen; picture-in-picture" allowfullscreen />
             </div>
         </section>
@@ -41,12 +41,6 @@
                     </NuxtLink>
                 </div>
             </section>
-            <ul class="footer__thumb__inner__project" ref="thumbWrapper">
-                <li v-for="(video, index) in itemData.videos" :key="index">
-                    <span class="footer__thumb__img footer__thumb__project footer__thumb__dot"
-                        :class="{ is__selected: index === videoIndex }" @click="videoIndex = index"></span>
-                </li>
-            </ul>
         </LayoutFooter>
     </section>
 </template>
@@ -55,13 +49,11 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useProjectsData = useState('projects');
-const thumbWrapper = ref(null);
+const videoScroll = ref(null);
 const isTouchDevice = ref(typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
 let category = 'videos';
 
 const itemData = ref(getItem());
-const videoIndex = ref(0);
-const currentVideo = computed(() => itemData.value.videos?.[videoIndex.value] ?? null);
 
 function getItem() {
     const item = useProjectsData.value.find(item => item.slug === route.params.uid);
@@ -79,28 +71,12 @@ function getEmbedUrl(url) {
     return url;
 }
 
-let navLockVideo = false;
-let wheelIdleTimer = null;
-function goVideo(dir) {
-    const n = itemData.value.videos?.length ?? 0;
-    const target = Math.max(0, Math.min(n - 1, videoIndex.value + dir));
-    if (target !== videoIndex.value) videoIndex.value = target;
-}
+// Molette verticale (souris) -> défilement horizontal de la rangée de vidéos
 function onWheelVideo(event) {
-    if (useGL.value.indexMenuOpen) return;
-    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-    if (Math.abs(delta) < 6) return;
-    // 1 vidéo par geste : le verrou reste actif tant que l'inertie du scroll continue
-    clearTimeout(wheelIdleTimer);
-    wheelIdleTimer = setTimeout(() => { navLockVideo = false; }, 220);
-    if (navLockVideo) return;
-    navLockVideo = true;
-    goVideo(delta > 0 ? 1 : -1);
-}
-function onKeysVideo(event) {
-    if (useGL.value.indexMenuOpen) return;
-    if (event.key === 'ArrowRight') { event.preventDefault(); goVideo(1); }
-    else if (event.key === 'ArrowLeft') { event.preventDefault(); goVideo(-1); }
+    const el = videoScroll.value;
+    if (!el || (useGL.value && useGL.value.indexMenuOpen)) return;
+    const delta = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+    if (delta) el.scrollLeft += delta;
 }
 
 onBeforeRouteLeave((to, from, next) => {
@@ -112,17 +88,11 @@ onMounted(async () => {
     await nextTick();
     onMountedUID(useGL, isTouchDevice, route);
     document.addEventListener('wheel', onWheelVideo, { passive: true });
-    document.addEventListener('keydown', onKeysVideo);
-    swipeCleanup = addSwipeNav((dir) => goVideo(dir));
     unlockUI();
 })
 
-let swipeCleanup = null;
 onUnmounted(() => {
-    clearTimeout(wheelIdleTimer);
-    if (swipeCleanup) swipeCleanup();
     document.removeEventListener('wheel', onWheelVideo);
-    document.removeEventListener('keydown', onKeysVideo);
 })
 </script>
 
@@ -135,20 +105,36 @@ onUnmounted(() => {
 
 #viewItemVideo {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    gap: calc($space-s * 1.5);
     width: 100%;
     height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 $space-s;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .item__video__wrapper {
+    // fenêtre de rognage : ne montre que la vidéo (9:16) de l'embed Instagram
     position: relative;
-    width: min(400px, 92vw);
-    height: min(86vh, 720px);
+    flex: 0 0 auto;
+    width: 213px;
+    height: 378px;
+    overflow: hidden;
 
     .item__video {
-        width: 100%;
-        height: 100%;
+        position: absolute;
+        top: -54px; // masque l'en-tête (profil / "voir le profil")
+        left: -54px; // masque la bande noire de gauche (pillarbox)
+        width: 320px;
+        height: 700px; // hauteur naturelle de l'embed ; bas (likes/commentaires) coupé par overflow
         border: none;
     }
 }
