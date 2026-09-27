@@ -104,6 +104,48 @@ function unlockWindowX() {
     delete b.dataset.prevOverflowX;
 }
 
+// Mobile : glissement tactile manuel du conteneur. Le site force globalement
+// html { touch-action: pan-x } et on verrouille le scroll horizontal de la fenêtre,
+// ce qui empêche le scroll tactile natif de la chaîne. On gère donc le drag nous-mêmes
+// (le conteneur passe en touch-action:none via .is-chain-touch).
+let touchStartX = null, touchStartScroll = 0, touchLastX = 0, touchLastT = 0, touchVX = 0, momentumRAF = null;
+function onTouchStartPhoto(event) {
+    const el = photoScroll.value;
+    if (!el) return;
+    if (momentumRAF) { cancelAnimationFrame(momentumRAF); momentumRAF = null; }
+    touchStartX = event.touches[0].clientX;
+    touchLastX = touchStartX;
+    touchLastT = performance.now();
+    touchStartScroll = el.scrollLeft;
+    touchVX = 0;
+}
+function onTouchMovePhoto(event) {
+    const el = photoScroll.value;
+    if (!el || touchStartX === null) return;
+    const x = event.touches[0].clientX;
+    el.scrollLeft = touchStartScroll - (x - touchStartX);
+    const now = performance.now();
+    const dt = now - touchLastT;
+    if (dt > 0) touchVX = (touchLastX - x) / dt; // px/ms dans le sens du scroll
+    touchLastX = x;
+    touchLastT = now;
+    event.preventDefault();
+}
+function onTouchEndPhoto() {
+    const el = photoScroll.value;
+    touchStartX = null;
+    if (!el) return;
+    // inertie simple
+    let v = touchVX * 16; // px par frame ~60fps
+    const step = () => {
+        if (Math.abs(v) < 0.5) { momentumRAF = null; return; }
+        el.scrollLeft += v;
+        v *= 0.92;
+        momentumRAF = requestAnimationFrame(step);
+    };
+    if (Math.abs(v) > 1) momentumRAF = requestAnimationFrame(step);
+}
+
 onBeforeRouteLeave((to, from, next) => {
     lockUI();
     unlockWindowX();
@@ -116,12 +158,27 @@ onMounted(async () => {
     lockWindowX();
     // capture sur document pour passer AVANT Lenis (non-passif => preventDefault possible)
     document.addEventListener('wheel', onWheelPhoto, { capture: true, passive: false });
+    const el = photoScroll.value;
+    if (el) {
+        el.addEventListener('touchstart', onTouchStartPhoto, { passive: true });
+        el.addEventListener('touchmove', onTouchMovePhoto, { passive: false });
+        el.addEventListener('touchend', onTouchEndPhoto, { passive: true });
+        el.addEventListener('touchcancel', onTouchEndPhoto, { passive: true });
+    }
     unlockUI();
 })
 
 onUnmounted(() => {
     unlockWindowX();
     document.removeEventListener('wheel', onWheelPhoto, { capture: true });
+    if (momentumRAF) cancelAnimationFrame(momentumRAF);
+    const el = photoScroll.value;
+    if (el) {
+        el.removeEventListener('touchstart', onTouchStartPhoto);
+        el.removeEventListener('touchmove', onTouchMovePhoto);
+        el.removeEventListener('touchend', onTouchEndPhoto);
+        el.removeEventListener('touchcancel', onTouchEndPhoto);
+    }
 })
 </script>
 
@@ -143,7 +200,7 @@ onUnmounted(() => {
     overflow-y: hidden;
     padding: 0 $space-s;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+    touch-action: none; // le drag tactile est géré en JS (voir onTouchMovePhoto)
     overscroll-behavior-x: contain;
     scrollbar-width: none;
 

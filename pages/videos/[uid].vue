@@ -114,6 +114,46 @@ function unlockWindowX() {
     delete b.dataset.prevOverflowX;
 }
 
+// Mobile : glissement tactile manuel (le touch-action:pan-x global + verrou du scroll
+// fenêtre empêchent le scroll natif). Sur les zones hors iframe (marges au-dessus/en
+// dessous des vidéos), le drag fait défiler la rangée.
+let touchStartX = null, touchStartScroll = 0, touchLastX = 0, touchLastT = 0, touchVX = 0, momentumRAF = null;
+function onTouchStartVideo(event) {
+    const el = videoScroll.value;
+    if (!el) return;
+    if (momentumRAF) { cancelAnimationFrame(momentumRAF); momentumRAF = null; }
+    touchStartX = event.touches[0].clientX;
+    touchLastX = touchStartX;
+    touchLastT = performance.now();
+    touchStartScroll = el.scrollLeft;
+    touchVX = 0;
+}
+function onTouchMoveVideo(event) {
+    const el = videoScroll.value;
+    if (!el || touchStartX === null) return;
+    const x = event.touches[0].clientX;
+    el.scrollLeft = touchStartScroll - (x - touchStartX);
+    const now = performance.now();
+    const dt = now - touchLastT;
+    if (dt > 0) touchVX = (touchLastX - x) / dt;
+    touchLastX = x;
+    touchLastT = now;
+    event.preventDefault();
+}
+function onTouchEndVideo() {
+    const el = videoScroll.value;
+    touchStartX = null;
+    if (!el) return;
+    let v = touchVX * 16;
+    const step = () => {
+        if (Math.abs(v) < 0.5) { momentumRAF = null; return; }
+        el.scrollLeft += v;
+        v *= 0.92;
+        momentumRAF = requestAnimationFrame(step);
+    };
+    if (Math.abs(v) > 1) momentumRAF = requestAnimationFrame(step);
+}
+
 onBeforeRouteLeave((to, from, next) => {
     lockUI();
     unlockWindowX();
@@ -125,12 +165,27 @@ onMounted(async () => {
     onMountedUID(useGL, isTouchDevice, route);
     lockWindowX();
     document.addEventListener('wheel', onWheelVideo, { capture: true, passive: false });
+    const el = videoScroll.value;
+    if (el) {
+        el.addEventListener('touchstart', onTouchStartVideo, { passive: true });
+        el.addEventListener('touchmove', onTouchMoveVideo, { passive: false });
+        el.addEventListener('touchend', onTouchEndVideo, { passive: true });
+        el.addEventListener('touchcancel', onTouchEndVideo, { passive: true });
+    }
     unlockUI();
 })
 
 onUnmounted(() => {
     unlockWindowX();
     document.removeEventListener('wheel', onWheelVideo, { capture: true });
+    if (momentumRAF) cancelAnimationFrame(momentumRAF);
+    const el = videoScroll.value;
+    if (el) {
+        el.removeEventListener('touchstart', onTouchStartVideo);
+        el.removeEventListener('touchmove', onTouchMoveVideo);
+        el.removeEventListener('touchend', onTouchEndVideo);
+        el.removeEventListener('touchcancel', onTouchEndVideo);
+    }
 })
 </script>
 
@@ -152,6 +207,8 @@ onUnmounted(() => {
     overflow-y: hidden;
     padding: 0 $space-s;
     -webkit-overflow-scrolling: touch;
+    touch-action: none; // drag tactile géré en JS (onTouchMoveVideo)
+    overscroll-behavior-x: contain;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
