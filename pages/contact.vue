@@ -70,6 +70,11 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useSettingsData = useState('settings');
+useSeoMeta({
+	title: 'Contact | Léo Crouzille',
+	description: 'Contactez Léo Crouzille, photographe et vidéaste indépendant (BTP, architecture, corporate).',
+});
+useHead({ link: [{ rel: 'canonical', href: 'https://leocrouzille.com/contact' }] });
 const useProjetsPersData = useState('projets-perso');
 const projetsPers = ref(useProjetsPersData.value ?? []);
 const sliderItemPlaceholder = ref(null);

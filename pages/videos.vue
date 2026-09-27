@@ -63,6 +63,11 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useProjectsData = useState('projects');
+useSeoMeta({
+	title: 'Vidéos — Projets | Léo Crouzille',
+	description: 'Vidéos de projets réalisées par Léo Crouzille, vidéaste indépendant : BTP, architecture, corporate.',
+});
+useHead({ link: [{ rel: 'canonical', href: 'https://leocrouzille.com/videos' }] });
 const allProjects = useProjectsData.value ?? [];
 const videosSlider = ref(allProjects.filter(item => item.acf?.videos?.length > 0));
 const itemTitlePreview = ref([null, null]);

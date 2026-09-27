@@ -60,6 +60,17 @@ function getItem() {
     return item?.acf ?? {};
 }
 
+const _ctx = itemData.value.context?.[0]?.body || '';
+const _img = itemData.value.primary?.url || '';
+useSeoMeta({
+    title: `${itemData.value.title || 'Projet'} — Vidéos ${itemData.value.type || ''} | Léo Crouzille`,
+    description: (_ctx || `Vidéos du projet « ${itemData.value.title} » par Léo Crouzille, vidéaste.`).slice(0, 155),
+    ogTitle: `${itemData.value.title || 'Projet'} — Vidéos | Léo Crouzille`,
+    ogDescription: (_ctx || `Vidéos du projet « ${itemData.value.title} ».`).slice(0, 155),
+    ogImage: _img ? (_img.startsWith('http') ? _img : 'https://leocrouzille.com' + _img) : 'https://leocrouzille.com/home/bnf.webp',
+});
+useHead({ link: [{ rel: 'canonical', href: `https://leocrouzille.com/videos/${route.params.uid}` }] });
+
 function getEmbedUrl(url) {
     if (!url) return '';
     const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);

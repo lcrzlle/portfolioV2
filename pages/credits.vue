@@ -43,6 +43,11 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useCreditsData = useState('credits');
+useSeoMeta({
+	title: 'Crédits | Léo Crouzille',
+	description: 'Crédits du portfolio de Léo Crouzille.',
+});
+useHead({ link: [{ rel: 'canonical', href: 'https://leocrouzille.com/credits' }] });
 const creditsSlider = ref(useCreditsData.value.acf.credits_slider);
 const sliderItemPlaceholder = ref(null);
 const isLargeScreen = ref(true);

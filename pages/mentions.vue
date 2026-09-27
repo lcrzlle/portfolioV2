@@ -57,6 +57,16 @@
                     {{ useMentionsData.acf.page_mention_2.text_line_5 }}
                 </span>
             </div>
+
+            <h2>
+                <span class="reveal">{{ useMentionsData.acf.page_mention_3.title }}</span>
+            </h2>
+            <div class="credit__link__wrapper" style="display: flex; flex-direction: column;">
+                <span v-if="useMentionsData.acf.page_mention_3.text_line_1" class="footer__email__inner reveal"
+                    style="overflow: hidden;">
+                    {{ useMentionsData.acf.page_mention_3.text_line_1 }}
+                </span>
+            </div>
         </div>
         <div id="pageSlider">
             <div class="placeholder__item__slider" ref="sliderItemPlaceholder">
@@ -78,6 +88,11 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useMentionsData = useState('mentions');
+useSeoMeta({
+	title: 'Mentions légales | Léo Crouzille',
+	description: 'Mentions légales du site de Léo Crouzille.',
+});
+useHead({ link: [{ rel: 'canonical', href: 'https://leocrouzille.com/mentions' }] });
 const mentionsSlider = ref(useMentionsData.value.acf.mentions_slider);
 const sliderItemPlaceholder = ref(null);
 const isLargeScreen = ref(true);

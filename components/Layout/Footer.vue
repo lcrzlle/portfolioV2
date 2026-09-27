@@ -22,7 +22,7 @@
                                 </span>
                             </a>
                         </li>
-                        <li>
+                        <li v-if="useSettingsData.acf.youtube_link">
                             <a :href="useSettingsData.acf.youtube_link" class="footer__email__link button-link">
                                 <span class="footer__email__inner reveal">
                                     Youtube

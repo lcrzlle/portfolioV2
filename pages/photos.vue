@@ -63,6 +63,11 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useProjectsData = useState('projects');
+useSeoMeta({
+	title: 'Photos — Projets | Léo Crouzille',
+	description: 'Sélection de projets photo de Léo Crouzille, photographe indépendant : BTP, architecture, corporate.',
+});
+useHead({ link: [{ rel: 'canonical', href: 'https://leocrouzille.com/photos' }] });
 const projectsSlider = ref(useProjectsData.value);
 const itemTitlePreview = ref([null, null]);
 const itemLink = ref(null);

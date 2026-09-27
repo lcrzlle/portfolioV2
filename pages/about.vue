@@ -58,6 +58,11 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useAboutData = useState('about');
+useSeoMeta({
+	title: 'À propos | Léo Crouzille',
+	description: "Léo Crouzille, photographe et vidéaste indépendant spécialisé dans le BTP, l'architecture et le corporate.",
+});
+useHead({ link: [{ rel: 'canonical', href: 'https://leocrouzille.com/about' }] });
 const aboutSlider = ref(useAboutData.value.acf.about_slider);
 const sliderItemPlaceholder = ref(null);
 const isLargeScreen = ref(true);

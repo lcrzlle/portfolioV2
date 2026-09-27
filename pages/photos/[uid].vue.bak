@@ -16,10 +16,19 @@
                 </svg>
             </span>
         </nav>
-        <section id="viewItemChain" ref="photoScroll">
+        <section id="viewItem">
             <div v-for="(item, index) in itemData.slides" :key="index"
-                :class="item.format === 'horizontal' ? 'chain__item chain__item__h' : 'chain__item chain__item__v'">
-                <NuxtImg v-if="item.image" class="chain__img" :src="item.image.url" :alt="item.image.alt" />
+                :class="item.format === 'horizontal' ? 'item__project__h' : 'item__project__v'">
+                <NuxtImg v-if="item.image" class="item__project__img" :src="item.image.url" :alt="item.image.alt" />
+            </div>
+        </section>
+        <section id="viewItemMosaic" ref="mosaicRef">
+            <div class="mosaic__grid">
+                <button v-for="(item, index) in itemData.slides" :key="index" class="mosaic__cell"
+                    type="button" @click="onMosaicClick(index)">
+                    <NuxtImg v-if="item.image" class="mosaic__img" :src="item.image.url" :alt="item.image.alt"
+                        width="500" />
+                </button>
             </div>
         </section>
         <LayoutFooter>
@@ -41,6 +50,11 @@
                     </NuxtLink>
                 </div>
             </section>
+            <ul class="footer__thumb__inner__project" ref="thumbWrapper">
+                <li v-for="(item, index) in itemData.slides" :key="index">
+                    <span class="footer__thumb__img footer__thumb__project footer__thumb__dot" aria-hidden="true"></span>
+                </li>
+            </ul>
         </LayoutFooter>
     </section>
 </template>
@@ -49,9 +63,14 @@
 const route = useRoute();
 const useGL = useState('gl');
 const useProjectsData = useState('projects');
-const photoScroll = ref(null);
-const isTouchDevice = ref(typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
+const thumbWrapper = ref(null);
+const mosaicRef = ref(null);
+const isTouchDevice = ref(false);
 let category = 'photos';
+
+function onMosaicClick(index) {
+    navigateUID(useGL.value, index);
+}
 
 const itemData = ref(getItem());
 
@@ -71,57 +90,23 @@ useSeoMeta({
 });
 useHead({ link: [{ rel: 'canonical', href: `https://leocrouzille.com/photos/${route.params.uid}` }] });
 
-// Molette -> défilement horizontal de la rangée de photos.
-// Enregistré en CAPTURE sur document (comme l'ancien handleWheelUID) : on intercepte
-// l'événement AVANT Lenis (scroll horizontal de la fenêtre hérité de la page liste)
-// et on le stoppe (stopPropagation + preventDefault) pour qu'il ne « chasse » pas la
-// rangée hors écran ; on scrolle nous-mêmes le conteneur.
-function onWheelPhoto(event) {
-    const el = photoScroll.value;
-    if (!el || (useGL.value && useGL.value.indexMenuOpen)) return;
-    event.stopPropagation();
-    event.preventDefault();
-    const delta = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
-    if (delta) el.scrollLeft += delta;
-}
-
-// Verrouille tout défilement horizontal de la fenêtre : la page liste (#pageSlider)
-// reste montée derrière et rend le document débordant ; une fois Lenis stoppé, le
-// scroll natif reprendrait et « chasserait » la rangée. On restaure en quittant.
-function lockWindowX() {
-    const h = document.documentElement, b = document.body;
-    h.dataset.prevOverflowX = h.style.overflowX;
-    b.dataset.prevOverflowX = b.style.overflowX;
-    window.scrollTo(0, 0);
-    h.style.overflowX = 'hidden';
-    b.style.overflowX = 'hidden';
-}
-function unlockWindowX() {
-    const h = document.documentElement, b = document.body;
-    h.style.overflowX = h.dataset.prevOverflowX || '';
-    b.style.overflowX = b.dataset.prevOverflowX || '';
-    delete h.dataset.prevOverflowX;
-    delete b.dataset.prevOverflowX;
+async function initUID() {
+    await ensureImagesLoaded('.item__project__img');
+    initSliderUID(useGL, route);
+    enterSliderUID(useGL);
+    await initLenisUID(thumbWrapper, useGL);
 }
 
 onBeforeRouteLeave((to, from, next) => {
     lockUI();
-    unlockWindowX();
     onBeforeLeaveUID(to, from, next, useGL, category);
 })
 
 onMounted(async () => {
     await nextTick();
+    await initUID();
     onMountedUID(useGL, isTouchDevice, route);
-    lockWindowX();
-    // capture sur document pour passer AVANT Lenis (non-passif => preventDefault possible)
-    document.addEventListener('wheel', onWheelPhoto, { capture: true, passive: false });
     unlockUI();
-})
-
-onUnmounted(() => {
-    unlockWindowX();
-    document.removeEventListener('wheel', onWheelPhoto, { capture: true });
 })
 </script>
 
@@ -129,54 +114,6 @@ onUnmounted(() => {
 #projectContent {
     #wrapperFooter {
         height: 200px !important;
-    }
-}
-
-#viewItemChain {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: calc($space-s * 1.5);
-    width: 100%;
-    height: 100vh;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 0 $space-s;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
-
-    // le padding-right d'un conteneur à défilement horizontal n'est pas honoré en fin
-    // de scroll (Chrome/Safari) ; un espaceur flex l'est de façon fiable et garantit
-    // la marge après la dernière photo
-    &::after {
-        content: "";
-        flex: 0 0 $space-s;
-        align-self: stretch;
-    }
-}
-
-.chain__item {
-    position: relative;
-    flex: 0 0 auto;
-    height: 72vh;
-
-    .chain__img {
-        height: 100%;
-        width: auto;
-        object-fit: contain;
-        display: block;
-    }
-}
-
-@media (max-width: 800px) {
-    .chain__item {
-        height: 60vh;
     }
 }
 

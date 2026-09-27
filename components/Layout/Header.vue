@@ -10,7 +10,7 @@
                     <li>
                         <a :href="social_2" target="blank" class="reveal-header" style="visibility: hidden;">LinkedIn</a>
                     </li>
-                    <li>
+                    <li v-if="social_3">
                         <a :href="social_3" target="blank" class="reveal-header" style="visibility: hidden;">Youtube</a>
                     </li>
                 </ul>

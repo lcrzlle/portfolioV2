@@ -18,7 +18,8 @@
 				:subtitleTwo="useHomeData.acf.page_subtitle_2" :subtitleThree="useHomeData.acf.page_subtitle_3" />
 		</div>
 		<div id="paragraphWrapper">
-			<h3 class="reveal-text" style="visibility: hidden;">{{ useHomeData.acf.page_paragraph }}</h3>
+			<h3 class="reveal-text" style="visibility: hidden; margin-bottom: 0;">{{ useHomeData.acf.page_paragraph }}</h3>
+			<h3 class="reveal-text" style="visibility: hidden;">{{ useHomeData.acf.page_paragraph_2 }}</h3>
 		</div>
 		<div id="pageSlider">
 			<div class="slider__item__wrapper" id="sliderPlaceholder" ref="sliderItemPlaceholder">
