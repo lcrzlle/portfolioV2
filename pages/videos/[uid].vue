@@ -82,28 +82,55 @@ function getEmbedUrl(url) {
     return url;
 }
 
-// Molette verticale (souris) -> défilement horizontal de la rangée de vidéos
+// Molette -> défilement horizontal de la rangée de vidéos.
+// Capture sur document pour passer AVANT Lenis (scroll horizontal de la fenêtre
+// hérité de la page liste) et le stopper, sinon la fenêtre défile en parallèle et
+// laisse apparaître une zone grise au retour en arrière.
 function onWheelVideo(event) {
     const el = videoScroll.value;
     if (!el || (useGL.value && useGL.value.indexMenuOpen)) return;
+    event.stopPropagation();
+    event.preventDefault();
     const delta = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
     if (delta) el.scrollLeft += delta;
 }
 
+// Verrouille tout défilement horizontal de la fenêtre : la page liste (#pageSlider)
+// reste montée derrière et rend le document débordant ; une fois Lenis stoppé le
+// scroll natif reprendrait et découvrirait une zone grise. Restauré en quittant.
+function lockWindowX() {
+    const h = document.documentElement, b = document.body;
+    h.dataset.prevOverflowX = h.style.overflowX;
+    b.dataset.prevOverflowX = b.style.overflowX;
+    window.scrollTo(0, 0);
+    h.style.overflowX = 'hidden';
+    b.style.overflowX = 'hidden';
+}
+function unlockWindowX() {
+    const h = document.documentElement, b = document.body;
+    h.style.overflowX = h.dataset.prevOverflowX || '';
+    b.style.overflowX = b.dataset.prevOverflowX || '';
+    delete h.dataset.prevOverflowX;
+    delete b.dataset.prevOverflowX;
+}
+
 onBeforeRouteLeave((to, from, next) => {
     lockUI();
+    unlockWindowX();
     onBeforeLeaveUID(to, from, next, useGL, category);
 })
 
 onMounted(async () => {
     await nextTick();
     onMountedUID(useGL, isTouchDevice, route);
-    document.addEventListener('wheel', onWheelVideo, { passive: true });
+    lockWindowX();
+    document.addEventListener('wheel', onWheelVideo, { capture: true, passive: false });
     unlockUI();
 })
 
 onUnmounted(() => {
-    document.removeEventListener('wheel', onWheelVideo);
+    unlockWindowX();
+    document.removeEventListener('wheel', onWheelVideo, { capture: true });
 })
 </script>
 

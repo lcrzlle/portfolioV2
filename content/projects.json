@@ -81,23 +81,107 @@
       "slides": [
         {
           "image": {
-            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
-            "alt": "Photo 1 (temporaire)"
+            "url": "/projets/palet-saint-germain/slide-1.webp",
+            "alt": "Palet Saint Germain — photo 1"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-2.webp",
+            "alt": "Palet Saint Germain — photo 2"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-3.webp",
+            "alt": "Palet Saint Germain — photo 3"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-4.webp",
+            "alt": "Palet Saint Germain — photo 4"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-5.webp",
+            "alt": "Palet Saint Germain — photo 5"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-6.webp",
+            "alt": "Palet Saint Germain — photo 6"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-7.webp",
+            "alt": "Palet Saint Germain — photo 7"
           },
           "format": "horizontal"
         },
         {
           "image": {
-            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
-            "alt": "Photo 2 (temporaire)"
+            "url": "/projets/palet-saint-germain/slide-8.webp",
+            "alt": "Palet Saint Germain — photo 8"
           },
           "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-9.webp",
+            "alt": "Palet Saint Germain — photo 9"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-10.webp",
+            "alt": "Palet Saint Germain — photo 10"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-11.webp",
+            "alt": "Palet Saint Germain — photo 11"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-12.webp",
+            "alt": "Palet Saint Germain — photo 12"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-13.webp",
+            "alt": "Palet Saint Germain — photo 13"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/palet-saint-germain/slide-14.webp",
+            "alt": "Palet Saint Germain — photo 14"
+          },
+          "format": "horizontal"
         }
       ],
       "context": [
         {
           "title": "Contexte",
-          "body": "Présentation du projet et de ses enjeux — texte à compléter."
+          "body": "Association parisienne qui fait vivre le palet breton, ce jeu traditionnel de disques en fonte sur planche en bois. Tournois, concours et animations conviviaux qui réunissent des passionnés de toute la France."
         }
       ],
       "type": "Association sportive",
@@ -854,17 +938,150 @@
       "slides": [
         {
           "image": {
-            "url": "https://res.cloudinary.com/demo/image/upload/w_1920,h_1280,c_fill/sample.jpg",
-            "alt": "Renoo — photo 1 (temporaire)"
+            "url": "/projets/renoo/slide-1.webp",
+            "alt": "Renoo — photo 1"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-2.webp",
+            "alt": "Renoo — photo 2"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-3.webp",
+            "alt": "Renoo — photo 3"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-4.webp",
+            "alt": "Renoo — photo 4"
           },
           "format": "horizontal"
         },
         {
           "image": {
-            "url": "https://res.cloudinary.com/demo/image/upload/w_1280,h_1920,c_fill/sample.jpg",
-            "alt": "Renoo — photo 2 (temporaire)"
+            "url": "/projets/renoo/slide-5.webp",
+            "alt": "Renoo — photo 5"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-6.webp",
+            "alt": "Renoo — photo 6"
           },
           "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-7.webp",
+            "alt": "Renoo — photo 7"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-8.webp",
+            "alt": "Renoo — photo 8"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-9.webp",
+            "alt": "Renoo — photo 9"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-10.webp",
+            "alt": "Renoo — photo 10"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-11.webp",
+            "alt": "Renoo — photo 11"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-12.webp",
+            "alt": "Renoo — photo 12"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-13.webp",
+            "alt": "Renoo — photo 13"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-14.webp",
+            "alt": "Renoo — photo 14"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-15.webp",
+            "alt": "Renoo — photo 15"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-16.webp",
+            "alt": "Renoo — photo 16"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-17.webp",
+            "alt": "Renoo — photo 17"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-18.webp",
+            "alt": "Renoo — photo 18"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-19.webp",
+            "alt": "Renoo — photo 19"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-20.webp",
+            "alt": "Renoo — photo 20"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/renoo/slide-21.webp",
+            "alt": "Renoo — photo 21"
+          },
+          "format": "horizontal"
         }
       ],
       "context": [
@@ -973,6 +1190,261 @@
         "https://www.instagram.com/reel/DaCqJJ2ATp7/",
         "https://www.instagram.com/reel/DaigEgHjGk1/"
       ]
+    }
+  },
+  {
+    "slug": "grof-cafe",
+    "acf": {
+      "title": "Grof Café",
+      "localisation": "",
+      "project_number": "13",
+      "title_preview": {
+        "line_1": "Grof",
+        "line_2": "Café"
+      },
+      "primary": {
+        "url": "/projets/grof-cafe/cover.webp",
+        "alt": "Grof Café — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-1.webp",
+            "alt": "Grof Café — photo 1"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-2.webp",
+            "alt": "Grof Café — photo 2"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-3.webp",
+            "alt": "Grof Café — photo 3"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-4.webp",
+            "alt": "Grof Café — photo 4"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-5.webp",
+            "alt": "Grof Café — photo 5"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-6.webp",
+            "alt": "Grof Café — photo 6"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-7.webp",
+            "alt": "Grof Café — photo 7"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-8.webp",
+            "alt": "Grof Café — photo 8"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-9.webp",
+            "alt": "Grof Café — photo 9"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-10.webp",
+            "alt": "Grof Café — photo 10"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-11.webp",
+            "alt": "Grof Café — photo 11"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-12.webp",
+            "alt": "Grof Café — photo 12"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-13.webp",
+            "alt": "Grof Café — photo 13"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-14.webp",
+            "alt": "Grof Café — photo 14"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/grof-cafe/slide-15.webp",
+            "alt": "Grof Café — photo 15"
+          },
+          "format": "vertical"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Coffee shop du Sentier (Paris 2e) pensé pour les pros : un lieu pour travailler, pitcher et closer entre deux rendez-vous. Café de spécialité, menu resserré et service rapide, dans une salle faite pour avancer."
+        }
+      ],
+      "type": "Café",
+      "videos": []
+    }
+  },
+  {
+    "slug": "arkeos-club",
+    "acf": {
+      "title": "Arkeos Club",
+      "localisation": "",
+      "project_number": "14",
+      "title_preview": {
+        "line_1": "Arkeos",
+        "line_2": "Club"
+      },
+      "primary": {
+        "url": "/projets/arkeos-club/cover.webp",
+        "alt": "Arkeos Club — couverture du projet"
+      },
+      "slides": [
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-1.webp",
+            "alt": "Arkeos Club — photo 1"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-2.webp",
+            "alt": "Arkeos Club — photo 2"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-3.webp",
+            "alt": "Arkeos Club — photo 3"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-4.webp",
+            "alt": "Arkeos Club — photo 4"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-5.webp",
+            "alt": "Arkeos Club — photo 5"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-6.webp",
+            "alt": "Arkeos Club — photo 6"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-7.webp",
+            "alt": "Arkeos Club — photo 7"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-8.webp",
+            "alt": "Arkeos Club — photo 8"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-9.webp",
+            "alt": "Arkeos Club — photo 9"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-10.webp",
+            "alt": "Arkeos Club — photo 10"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-11.webp",
+            "alt": "Arkeos Club — photo 11"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-12.webp",
+            "alt": "Arkeos Club — photo 12"
+          },
+          "format": "vertical"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-13.webp",
+            "alt": "Arkeos Club — photo 13"
+          },
+          "format": "horizontal"
+        },
+        {
+          "image": {
+            "url": "/projets/arkeos-club/slide-14.webp",
+            "alt": "Arkeos Club — photo 14"
+          },
+          "format": "horizontal"
+        }
+      ],
+      "context": [
+        {
+          "title": "Contexte",
+          "body": "Club d'affaires parisien qui réunit une communauté de jeunes investisseurs autour de l'immobilier. Conférences, ateliers et rencontres pour échanger, se former et développer sa culture financière."
+        }
+      ],
+      "type": "Club d'affaires",
+      "videos": []
     }
   }
 ]
