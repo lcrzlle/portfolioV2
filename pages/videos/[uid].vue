@@ -37,7 +37,7 @@
                 <div class="item__toggle__wrapper">
                     <NuxtLink :to="'/photos/' + route.params.uid" class="item__toggle__link"
                         :class="{ 'button-link': !isTouchDevice }">
-                        <span class="reveal-text-project" style="visibility: hidden;">Photo</span>
+                        <span class="reveal-text-project" style="visibility: hidden;">Photos</span>
                     </NuxtLink>
                 </div>
             </section>

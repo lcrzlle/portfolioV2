@@ -37,7 +37,7 @@
                 <div v-if="itemData.videos && itemData.videos.length" class="item__toggle__wrapper">
                     <NuxtLink :to="'/videos/' + route.params.uid" class="item__toggle__link"
                         :class="{ 'button-link': !isTouchDevice }">
-                        <span class="reveal-text-project" style="visibility: hidden;">Vidéo</span>
+                        <span class="reveal-text-project" style="visibility: hidden;">Vidéos</span>
                     </NuxtLink>
                 </div>
             </section>
