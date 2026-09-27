@@ -39,6 +39,34 @@ function addClickEvents(useGL) {
 
 let isScrolling = false;
 let homeSwipeCleanup = null;
+let homeAutoTimer = null;
+
+// Diaporama de fond automatique, aléatoire, non contrôlable : avance d'une slide
+// toutes les 3 s à travers les covers (déjà mélangées côté template). Réutilise la
+// transition native (moveToRight/moveToLeft) SANS toucher à currentCategory, donc la
+// navigation Photos/Vidéos/Contact reste indépendante du fond.
+function autoStepHome(useGL) {
+    if (isScrolling) return;
+    const hs = useGL.value.homeSlider;
+    if (!hs || !hs.store || hs.store.length < 2) return;
+    if (useGL.value.indexMenuOpen) return;
+    const n = hs.store.length;
+    const next = (hs.actualSlide + 1) % n;
+    hs.store.forEach((el, index) => {
+        if (next > hs.actualSlide) moveToRight(next, index, useGL);
+        else moveToLeft(next, index, hs.actualSlide, useGL);
+    });
+    hs.actualSlide = next;
+}
+
+export function startHomeAutoplay(useGL) {
+    stopHomeAutoplay();
+    homeAutoTimer = setInterval(() => autoStepHome(useGL), 3000);
+}
+
+export function stopHomeAutoplay() {
+    if (homeAutoTimer) { clearInterval(homeAutoTimer); homeAutoTimer = null; }
+}
 
 // Une étape de navigation (dir = +1 suivant, -1 précédent), partagée molette + swipe.
 function stepHome(useGL, dir) {
@@ -75,8 +103,8 @@ export function onMountedIndex(useGL, sliderItemPlaceholder, route) {
         useGL.value.firstLoadProject = true;
         useGL.value.currentCategory = 'photos';
         initHomeSlider(useGL, sliderItemPlaceholder);
-        addClickEvents(useGL);
         addToScene(useGL);
+        startHomeAutoplay(useGL);
         splitReveal('.reveal', false);
         textReveal('.reveal-text', false);
         showFooter('.footer__thumb__img');
@@ -96,6 +124,7 @@ export function onMountedIndex(useGL, sliderItemPlaceholder, route) {
 }
 
 export function onBeforeLeaveIndex(to, from, next, useGL) {
+    stopHomeAutoplay();
     document.removeEventListener("wheel", eventSlideScrolling, true);
     if (homeSwipeCleanup) { homeSwipeCleanup(); homeSwipeCleanup = null; }
     if (to.name == 'photos' || to.name == 'videos') {

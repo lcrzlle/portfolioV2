@@ -19,8 +19,11 @@ function handleCategory() {
         return;
     }
     const links = document.querySelectorAll('.cross__handler__item');
-    let index = links.length - 1 - useGL.value.homeSlider.actualSlide;
-    useGL.value.currentCategory = links[index].textContent.toLowerCase();
+    // le fond défile désormais en aléatoire (index décorrélé des liens) : la croix
+    // renvoie simplement vers Photos par défaut. La nav réelle se fait via les liens.
+    const target = links[0] || null;
+    if (!target) return;
+    useGL.value.currentCategory = target.textContent.toLowerCase();
     gsap.to('.cross__handler__title', {
         y: '100',
         duration: 1.3,

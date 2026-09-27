@@ -29,8 +29,8 @@
                         <span v-if="itemData.title" class="reveal-text-project" style="visibility: hidden;">{{
                             itemData.title }}</span>
                     </p>
-                    <p class="page__title__secondary">
-                        <span v-if="itemData.localisation" class="reveal-text-project" style="visibility: hidden;">{{
+                    <p v-if="itemData.localisation" class="page__title__secondary">
+                        <span class="reveal-text-project" style="visibility: hidden;">{{
                             itemData.localisation }}</span>
                     </p>
                 </div>

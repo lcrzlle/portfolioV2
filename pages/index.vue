@@ -2,16 +2,16 @@
 	<main id="pageContent">
 		<span id="crossHandler">
 			<span class="cross__handler__title ">
-				<span class="cross__handler__item " @click="selectedLink('contact')">
-					<span :class="buttonLinkClass" style="visibility: hidden;">Contact</span>
+				<span class="cross__handler__item" @click="selectedLink('photos')">
+					<span :class="buttonLinkClass" style="visibility: hidden;">Photos</span>
 				</span>
 				<span class="cross__handler__item " @click="selectedLink('videos')">
 					<span :class="buttonLinkClass" style="visibility: hidden;">Vidéos</span>
 				</span>
-				<span class="cross__handler__item" @click="selectedLink('photos')">
-					<span :class="buttonLinkClass" style="visibility: hidden;">Photos</span>
-				</span>
 			</span>
+		</span>
+		<span id="homeContact" class="cross__handler__item" @click="selectedLink('contact')">
+			<span :class="buttonLinkClass" style="visibility: hidden;">Contact</span>
 		</span>
 		<div id="pageTitle">
 			<LayoutPageTitle :homeTitle="useHomeData.acf.page_title" :subtitleOne="useHomeData.acf.page_subtitle_1"
@@ -28,9 +28,8 @@
 	</main>
 	<LayoutFooter>
 		<ul class="footer__thumb__inner">
-			<li v-if="homeSlider" v-for="images in homeSlider">
-				<img class="home__thumb__src" :src="images.image.url" :alt="images.image.alt" />
-					<span class="footer__thumb__img footer__thumb__dot" aria-hidden="true"></span>
+			<li v-for="(images, i) in bgImages" :key="i">
+				<img class="home__thumb__src" :src="images.url" :alt="images.alt" />
 			</li>
 		</ul>
 	</LayoutFooter>
@@ -41,7 +40,21 @@ import gsap from 'gsap';
 const route = useRoute();
 const useGL = useState('gl');
 const useHomeData = useState('home');
-const homeSlider = ref(useHomeData.value.acf.home_slider);
+const useProjectsData = useState('projects');
+// Fond de la home : diaporama ambiant des covers de projets, ordre aléatoire.
+function shuffle(arr) {
+	const a = arr.slice();
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+	return a;
+}
+const bgImages = ref(shuffle(
+	(useProjectsData.value || [])
+		.map((p) => ({ url: p.acf?.primary?.url, alt: p.acf?.title || '' }))
+		.filter((x) => x.url)
+));
 const sliderItemPlaceholder = ref(null);
 const router = useRouter();
 const isChrome = ref(false);
@@ -87,11 +100,11 @@ onMounted(async () => {
 	isChrome.value = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 	await nextTick();
 	// Préchargement forcé des fonds (robuste mobile : le lazy-load ignore les <img> cachés)
-	await Promise.all((homeSlider.value || []).map((s) => new Promise((res) => {
+	await Promise.all((bgImages.value || []).map((s) => new Promise((res) => {
 		const im = new Image();
 		im.onload = res;
 		im.onerror = res;
-		im.src = s.image.url;
+		im.src = s.url;
 		setTimeout(res, 2500);
 	})));
 	if (!useGL.value.firstLoadApp) {
@@ -104,20 +117,21 @@ onMounted(async () => {
 
 <style lang="scss">
 #crossHandler {
-	@extend %fixed-center;
-	@extend %flex-justify-center;
-	align-items: flex-end;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	// pousse Photos/Vidéos juste SOUS la croix "+" (centrée) au lieu de la chevaucher
+	margin-top: calc(clamp(2.5rem, 2.1798780487804876rem + 1.8292682926829267vw, 4.375rem) * 0.8);
 	z-index: 10;
-	height: calc(clamp(2.5rem, 2.1798780487804876rem + 1.8292682926829267vw, 4.375rem) * 2.2);
-	width: calc(clamp(2.5rem, 2.1798780487804876rem + 1.8292682926829267vw, 4.375rem) * 2.5);
-	overflow: hidden;
+	display: flex;
+	justify-content: center;
 
 	.cross__handler__title {
-		@extend %flex-column;
-		justify-content: flex-end;
+		display: flex;
+		flex-direction: column;
 		align-items: center;
-		overflow: hidden;
-		height: $font-size-link;
+		gap: 0.45rem;
 		font-size: $font-size-link;
 		text-decoration: underline;
 		text-decoration-thickness: 1px;
@@ -126,14 +140,23 @@ onMounted(async () => {
 
 		.cross__handler__item {
 			cursor: pointer;
-			transform: translateY(0%);
-			transition: transform 0.5s ease-in-out;
 		}
 	}
+}
 
-	#crossHandler>span>span {
-		@extend %flex-justify-center;
-	}
+// Lien Contact : bas-gauche, au niveau de "Email" (qui est en bas-droite)
+#homeContact {
+	position: fixed;
+	left: $space-s;
+	bottom: calc($space-s + $space-s / 2);
+	z-index: 10;
+	cursor: pointer;
+	font-size: $font-size-link;
+	font-weight: 300;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
+	overflow: hidden;
 }
 
 #sliderPlaceholder {
